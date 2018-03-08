@@ -129,4 +129,7 @@ main()
 =======
 print("hello world")
 print("Jordan can edit this file")
+<<<<<<< HEAD
+>>>>>>> 459be555379778bfd0957983aebe62138fac6813
+=======
 >>>>>>> 459be555379778bfd0957983aebe62138fac6813
