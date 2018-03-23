@@ -4,6 +4,7 @@ import copy
 BOARD = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 PLAYER_SYMBOL = 'H'
 COMPUTER_SYMBOL = 'C'
+DISASTER_AVOIDANCE = (-1, -1)
 POSSIBLE_TURN = (-1, -1)
 BASE_EXIT = 5
 
@@ -137,9 +138,12 @@ def get_comp_move():
         # row = random.randrange(0, 3)
         # col = random.randrange(0, 3)
 
-        find_next_move(BOARD, COMPUTER_SYMBOL)
+        find_next_move(BOARD, COMPUTER_SYMBOL, 0, 0)
         row = POSSIBLE_TURN[0]
         col = POSSIBLE_TURN[1]
+        if(DISASTER_AVOIDANCE != (-1, -1)):
+            row = DISASTER_AVOIDANCE[0]
+            col = DISASTER_AVOIDANCE[1]
 
         if BOARD[row][col] == 0:
             BOARD[row][col] = COMPUTER_SYMBOL
@@ -188,7 +192,8 @@ def is_board_full(board):
 
     return True
 
-def find_next_move(board, team_symbol):
+
+def find_next_move(board, team_symbol, lastRow, lastCol):
     global POSSIBLE_TURN
     tempBoard = copy.deepcopy(board)
     if base_case(board) != BASE_EXIT:
@@ -201,11 +206,11 @@ def find_next_move(board, team_symbol):
                 if board[row][col] == 0:
                     tempBoard[row][col] = team_symbol
                     baseResult = base_case(tempBoard)
-                    if baseResult == 1:
+                    if baseResult == -1:
+                        return -1
+                    elif baseResult == 1:
                         POSSIBLE_TURN = (row, col)
                         return 1
-                    elif baseResult == -1:
-                        return -1
                     else:
                         tempBoard[row][col] = 0
 
@@ -214,8 +219,13 @@ def find_next_move(board, team_symbol):
             for col in range(0, 3, 1):
                 if board[row][col] == 0:
                     tempBoard[row][col] = team_symbol
-                    previousResult = find_next_move(tempBoard, get_next_team_symbol(team_symbol))
-                    if previousResult == -1:
+                    previousResult = find_next_move(tempBoard, get_next_team_symbol(team_symbol), row, col)
+                    if previousResult == -2:
+                        global DISASTER_AVOIDANCE
+                        if DISASTER_AVOIDANCE == (-1, -1):
+                            DISASTER_AVOIDANCE = (lastRow, lastCol)
+                            return -2
+                    elif previousResult == -1:
                         tempBoard[row][col] = 0 # Unplace piece
                         continue
                     elif previousResult == 0:
@@ -237,6 +247,8 @@ def get_next_team_symbol(team_symbol):
 def base_case(board):
     if has_won(board, COMPUTER_SYMBOL):
         return 1
+    elif (check_rows(board, PLAYER_SYMBOL) and check_cols(board, PLAYER_SYMBOL)) or (check_cols(board, PLAYER_SYMBOL) and check_diags(board, PLAYER_SYMBOL)) or (check_diags(board, PLAYER_SYMBOL) and check_rows(board, PLAYER_SYMBOL)):
+        return -2
     elif has_won(board, PLAYER_SYMBOL):
         return -1
     elif is_board_full(board):
