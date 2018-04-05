@@ -29,7 +29,7 @@
 #include "LearningGambler.h"
 
 // Change to include your player directly below
-#include "DumbPlayerV2.h"
+#include "Cheddar.h"
 
 
 PlayerV2* getPlayer( int playerId, int boardSize );
@@ -58,7 +58,7 @@ string playerNames[NumPlayers] = {
     "Gambler Player",
     "Learning Gambler",
     // Change to your player's name below
-    "Dumb Player"
+    "Cheddar"
 };
 
 int main() {
@@ -226,7 +226,7 @@ PlayerV2* getPlayer( int playerId, int boardSize ) {
 	case 2: return new GamblerPlayerV2( boardSize );
 	case 3: return new LearningGambler( boardSize );
 	// Change for your player's AI below
-	case 4: return new DumbPlayerV2( boardSize );
+	case 4: return new Cheddar( boardSize );
     }
 }
 
