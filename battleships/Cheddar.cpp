@@ -26,9 +26,10 @@
  * before any of the rounds happen. The constructor does not get called 
  * before rounds; newRound() gets called before every round.
  */
-Cheddar::Cheddar( int boardSize )
-    :PlayerV2(boardSize)
+Cheddar::Cheddar( int boardSz )
+    :PlayerV2(boardSz)
 {
+	boardSize = boardSz;
     // Could do any initialization of inter-round data structures here.
 }
 
@@ -44,9 +45,10 @@ Cheddar::~Cheddar( ) {}
  */
 void Cheddar::initializeBoard() {
     for(int row=0; row<boardSize; row++) {
-	for(int col=0; col<boardSize; col++) {
-	    this->board[row][col] = WATER;
-	}
+		for(int col=0; col<boardSize; col++) {
+			this->board[row][col] = WATER;
+			this->cheddarBoard[row][col] = WATER;
+		}
     }
 }
 
@@ -60,18 +62,125 @@ void Cheddar::initializeBoard() {
  * Message constructor.
  */
 Message Cheddar::getMove() {
-    lastCol++;
-    if( lastCol >= boardSize ) {
-	lastCol = 0;
-	lastRow++;
-    }
-    if( lastRow >= boardSize ) {
-	lastCol = 0;
-	lastRow = 0;
-    }
+	int col = -1;
+	int row = -1;
+	seekKill(&row, &col);
+	if(col == -1){
+		lastCol += 3;
+		if( lastCol >= boardSize ) {
+			lastCol = 0 + (lastRow % 3);
+			lastRow++;
+		}
+		if( lastRow >= boardSize ) {
+			lastCol = 0;
+			lastRow = 0;
+		}
+		col = lastCol;
+		row = lastRow;
+	}
 
-    Message result( SHOT, lastRow, lastCol, "Bang", None, 1 );
-    return result;
+	if(isValidMove(row, col)){
+		Message result( SHOT, row, col, "Bang", None, 1 );
+		return result;
+	}
+	else{
+		return getMove();
+	}
+}
+
+/**
+  * @brief Checks adjacent spots for a kill after getting a hit
+  * @param col The pointer for the column
+  * @param row The pointer for the row
+  */
+void Cheddar::seekKill(int *row, int *col){
+	/*for(int r = 0; r < boardSize; r++){
+		for(int c = 0; c < boardSize; c++){
+			if(board[r][c] == 'X'){
+				//If there is a surrounding hit spot:
+				if((r > 0 && board[r-1][c] == '~') && (r < boardSize - 1  && board[r+1][c] == 'X')){ // UP
+					*row = r - 1;
+					*col = c;
+				}
+				else if((c > 0 && board[r][c-1] == '~') && (c < boardSize - 1  && board[r][c+1] == 'X')){ // LEFT
+					*row = r;
+					*col = c - 1;
+				}
+				else if((r < boardSize - 1 && board[r+1][c] == '~') && (r > 0  && board[r-1][c] == 'X')){ // DOWN
+					*row = r + 1;
+					*col = c;
+				}
+				else if((c < boardSize - 1 && board[r][c+1] == '~') && (c > 0  && board[r][c-1] == 'X')){ // RIGHT
+					*row = r;
+					*col = c + 1;
+				}
+				//If there is no other hit spot around:
+				else if(r > 0 && board[r-1][c] == '~'){ // UP
+					*row = r - 1;
+					*col = c;
+				}
+				else if(c > 0 && board[r][c-1] == '~'){ // LEFT
+					*row = r;
+					*col = c - 1;
+				}
+				else if(r < boardSize - 1 && board[r+1][c] == '~'){ // DOWN
+					*row = r + 1;
+					*col = c;
+				}
+				else if(c < boardSize - 1 && board[r][c+1] == '~'){ // RIGHT
+					*row = r;
+					*col = c + 1;
+				}
+				return;
+			}
+		}
+	}*/
+
+	for(int r = 0; r < boardSize; r++){
+		for(int c = 0; c < boardSize; c++){
+			if(board[r][c] == HIT){
+				if( r > 0 && r < boardSize - 1 && board[r-1][c] == HIT && board[r+1][c] == WATER) { // if hit below, shoot above
+					*row = r - 1;
+					*col = c;
+				}
+				else if( r > 0 && r < boardSize - 1 && board[r+1][c] == HIT && board[r-1][c] == WATER) {
+					*row = r + 1;
+					*col = c;
+				}
+				else if( c > 0 && c < boardSize - 1 && board[r][c-1] == HIT && board[r][c+1] == WATER) {
+					*row = r;
+					*col = c - 1;
+				}
+				else if( c > 0 && c < boardSize - 1 && board[r][c+1] == HIT && board[r][c-1] == WATER) {
+					*row = r;
+					*col = c + 1;
+				}
+				else if(r > 0 && board[r-1][c] == WATER){ // UP
+
+					*row = r - 1;
+					*col = c;
+				}
+				else if(c > 0 && board[r][c-1] == WATER){ // LEFT
+					*row = r;
+					*col = c - 1;
+				}
+				else if(r < boardSize - 1 && board[r+1][c] == WATER){ // DOWN
+					*row = r + 1;
+					*col = c;
+				}
+				else if(c < boardSize - 1 && board[r][c+1] == WATER){ // RIGHT
+					*row = r;
+					*col = c + 1;
+				}
+				return;
+			}
+		}
+	}
+
+}
+
+bool Cheddar::isValidMove(int row, int col){
+	return board[row][col] == '~';
 }
 
 /**
@@ -108,11 +217,62 @@ Message Cheddar::placeShip(int length) {
     // Create ship names each time called: Ship0, Ship1, Ship2, ...
     snprintf(shipName, sizeof shipName, "Ship%d", numShipsPlaced);
 
-    // parameters = mesg type (PLACE_SHIP), row, col, a string, direction (Horizontal/Vertical)
-    Message response( PLACE_SHIP, numShipsPlaced, 0, shipName, Horizontal, length );
-    numShipsPlaced++;
+	int row, col, dir;
 
-    return response;
+	dir = rand() % 2;
+
+	findShipLocation(row, col, length, dir);
+
+	updateCheddarBoard(row, col, length, dir);
+
+	if( dir == 0 ) {
+		Message response( PLACE_SHIP, row, col, shipName, Horizontal, length );
+		numShipsPlaced++;
+
+		return response;
+	} else {
+		Message response( PLACE_SHIP, row, col, shipName, Vertical, length );
+		numShipsPlaced++;
+
+		return response;
+	}
+
+    // parameters = mesg type (PLACE_SHIP), row, col, a string, direction (Horizontal/Vertical)
+}
+
+void Cheddar::findShipLocation(int &row, int &col, int length, int dir) {
+
+	if( dir == 1 ) {
+		row = rand() % (boardSize - length + 1);
+		col = rand() % boardSize;
+
+		for( int r = row; r < row + length; r++ ) {
+			if( cheddarBoard[r][col] == '~' ) { continue; }
+			else { findShipLocation( row, col, length, dir ); break; }
+		}
+	}
+	else {	
+		col = rand() % (boardSize - length + 1);
+		row = rand() % boardSize;
+
+		for( int c = col; c < col + length; c++ ) {
+			if( cheddarBoard[row][c] == '~' ) { continue; }
+			else { findShipLocation( row, col, length, dir ); break; }
+		}
+	}
+
+}
+
+void Cheddar::updateCheddarBoard(int row, int col, int length, int dir) {
+	if(dir == 0) {
+		for( int c = col; c < col + length; c++ ) {
+			cheddarBoard[row][c] = SHIP;
+		}
+	} else {
+		for (int r = row; r < row + length; r++ ) {
+			cheddarBoard[r][col] = SHIP;
+		}
+	}
 }
 
 /**

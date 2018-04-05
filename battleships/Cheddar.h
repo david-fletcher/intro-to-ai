@@ -27,11 +27,17 @@ class Cheddar: public PlayerV2 {
 	void update(Message msg);
 
     private:
+	void seekKill(int *row, int *col);
+	bool isValidMove(int row, int col);
+	void findShipLocation(int &row, int &col, int length, int dir);
+	void updateCheddarBoard(int row, int col, int length, int dir);
+	int boardSize;
 	void initializeBoard();
         int lastRow;
         int lastCol;
 	int numShipsPlaced;
         char board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		char cheddarBoard[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 };
 
 #endif
