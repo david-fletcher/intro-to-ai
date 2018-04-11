@@ -26,11 +26,13 @@
  * before any of the rounds happen. The constructor does not get called 
  * before rounds; newRound() gets called before every round.
  */
+
 Cheddar::Cheddar( int boardSz )
     :PlayerV2(boardSz)
 {
 	boardSize = boardSz;
-    // Could do any initialization of inter-round data structures here.
+   	
+	// Could do any initialization of inter-round data structures here.
 }
 
 /**
@@ -50,6 +52,7 @@ void Cheddar::initializeBoard() {
 			this->cheddarBoard[row][col] = WATER;
 		}
     }
+
 }
 
 
@@ -62,10 +65,7 @@ void Cheddar::initializeBoard() {
  * Message constructor.
  */
 Message Cheddar::getMove() {
-	int col = -1;
-	int row = -1;
-	seekKill(&row, &col);
-	if(col == -1){
+	if(shotmode == SEEK) {
 		lastCol += 3;
 		if( lastCol >= boardSize ) {
 			lastCol = 0 + (lastRow % 3);
@@ -75,16 +75,26 @@ Message Cheddar::getMove() {
 			lastCol = 0;
 			lastRow = 0;
 		}
-		col = lastCol;
-		row = lastRow;
-	}
+		if(isValidMove(lastRow, lastCol)){
+			Message result( SHOT, lastRow, lastCol, "Bang", None, 1 );
+			return result;
+		} else {
+			return getMove();
+		}
+	} else if(shotmode == HUNT) {
+		huntForKill(row, col, lastHitRow, lastHitCol, td, shotmode);
 
-	if(isValidMove(row, col)){
-		Message result( SHOT, row, col, "Bang", None, 1 );
+		if(isValidMove(row, col)){
+			Message result( SHOT, row, col, "Bang", None, 1 );
+			return result;
+		}
+		else{
+			shotmode = SEEK;
+			return getMove();
+		}
+	} else {
+		Message result(SHOT, 0, 0, "Whoops", None, 1);
 		return result;
-	}
-	else{
-		return getMove();
 	}
 }
 
@@ -93,94 +103,98 @@ Message Cheddar::getMove() {
   * @param col The pointer for the column
   * @param row The pointer for the row
   */
-void Cheddar::seekKill(int *row, int *col){
-	/*for(int r = 0; r < boardSize; r++){
-		for(int c = 0; c < boardSize; c++){
-			if(board[r][c] == 'X'){
-				//If there is a surrounding hit spot:
-				if((r > 0 && board[r-1][c] == '~') && (r < boardSize - 1  && board[r+1][c] == 'X')){ // UP
-					*row = r - 1;
-					*col = c;
-				}
-				else if((c > 0 && board[r][c-1] == '~') && (c < boardSize - 1  && board[r][c+1] == 'X')){ // LEFT
-					*row = r;
-					*col = c - 1;
-				}
-				else if((r < boardSize - 1 && board[r+1][c] == '~') && (r > 0  && board[r-1][c] == 'X')){ // DOWN
-					*row = r + 1;
-					*col = c;
-				}
-				else if((c < boardSize - 1 && board[r][c+1] == '~') && (c > 0  && board[r][c-1] == 'X')){ // RIGHT
-					*row = r;
-					*col = c + 1;
-				}
-				//If there is no other hit spot around:
-				else if(r > 0 && board[r-1][c] == '~'){ // UP
-					*row = r - 1;
-					*col = c;
-				}
-				else if(c > 0 && board[r][c-1] == '~'){ // LEFT
-					*row = r;
-					*col = c - 1;
-				}
-				else if(r < boardSize - 1 && board[r+1][c] == '~'){ // DOWN
-					*row = r + 1;
-					*col = c;
-				}
-				else if(c < boardSize - 1 && board[r][c+1] == '~'){ // RIGHT
-					*row = r;
-					*col = c + 1;
-				}
-				return;
-			}
-		}
-	}*/
-
-	for(int r = 0; r < boardSize; r++){
-		for(int c = 0; c < boardSize; c++){
-			if(board[r][c] == HIT){
-				if( r > 0 && r < boardSize - 1 && board[r-1][c] == HIT && board[r+1][c] == WATER) { // if hit below, shoot above
-					*row = r - 1;
-					*col = c;
-				}
-				else if( r > 0 && r < boardSize - 1 && board[r+1][c] == HIT && board[r-1][c] == WATER) {
-					*row = r + 1;
-					*col = c;
-				}
-				else if( c > 0 && c < boardSize - 1 && board[r][c-1] == HIT && board[r][c+1] == WATER) {
-					*row = r;
-					*col = c - 1;
-				}
-				else if( c > 0 && c < boardSize - 1 && board[r][c+1] == HIT && board[r][c-1] == WATER) {
-					*row = r;
-					*col = c + 1;
-				}
-				else if(r > 0 && board[r-1][c] == WATER){ // UP
-
-					*row = r - 1;
-					*col = c;
-				}
-				else if(c > 0 && board[r][c-1] == WATER){ // LEFT
-					*row = r;
-					*col = c - 1;
-				}
-				else if(r < boardSize - 1 && board[r+1][c] == WATER){ // DOWN
-					*row = r + 1;
-					*col = c;
-				}
-				else if(c < boardSize - 1 && board[r][c+1] == WATER){ // RIGHT
-					*row = r;
-					*col = c + 1;
-				}
-				return;
-			}
-		}
+void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHitC, TargetDirection& direction, ShotMode& shotstrats ) {
+	switch( direction ) {
+		case UP:   if( lastHitR > 0 ) { 
+						if( board[lastHitR-1][lastHitC] == WATER ) {
+							shotRow = lastHitR-1;
+							shotCol = lastHitC;
+						}
+						else if( board[lastHitR-1][lastHitC] == HIT ) {
+							huntForKill( shotRow, shotCol, lastHitR-1, lastHitC, direction, shotstrats );
+							return;
+						}
+						else if( board[lastHitR-1][lastHitC] == MISS || board[lastHitR-1][lastHitC] == KILL ) {
+							direction = RIGHT;
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							return;
+						}
+					}
+					else {
+						direction = RIGHT;
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats );
+						return;
+					}
+				   break;
+		case DOWN: if( lastHitR < boardSize-1 ) { 
+						if( board[lastHitR+1][lastHitC] == WATER ) { 
+							shotRow = lastHitR+1;
+							shotCol = lastHitC;
+						}
+						else if( board[lastHitR+1][lastHitC] == HIT ) {
+							huntForKill( shotRow, shotCol, lastHitR+1, lastHitC, direction, shotstrats  );
+							return;
+						}
+						else if( board[lastHitR+1][lastHitC] == MISS || board[lastHitR+1][lastHitC] == KILL ) {
+							direction = UP;
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							return;
+						}
+					}
+					else {
+						direction = UP;
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+						return;
+					}
+					break;
+		case LEFT:  if( lastHitC > 0 ) { 
+						if( board[lastHitR][lastHitC-1] == WATER ) { 
+							shotRow = lastHitR;
+							shotCol = lastHitC-1;
+						}
+						else if( board[lastHitR][lastHitC-1] == HIT ) {
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC-1, direction, shotstrats  );
+							return;
+						}
+						else if( board[lastHitR][lastHitC-1] == MISS || board[lastHitR][lastHitC-1] == KILL ) {
+							direction = DOWN;
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							return;
+						}
+					}
+					else {
+						direction = DOWN;
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+						return;
+					}
+					break;
+		case RIGHT: if( lastHitC < boardSize-1 ) { 
+						if( board[lastHitR][lastHitC+1] == WATER ) {
+							shotRow = lastHitR;
+							shotCol = lastHitC+1;
+						}
+						else if( board[lastHitR][lastHitC+1] == HIT ) {
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC+1, direction, shotstrats  );
+							return;
+						}
+						else if( board[lastHitR][lastHitC+1] == MISS || board[lastHitR][lastHitC+1] == KILL ) {
+							direction = LEFT;
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							return;
+						}
+					}
+					else {
+						direction = LEFT;
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+						return;
+					}
+					break;
+		default: break;
 	}
-
 }
 
 bool Cheddar::isValidMove(int row, int col){
-	return board[row][col] == '~';
+	return (row >= 0 && row < boardSize && col >= 0 && col < boardSize) && (board[row][col] == WATER);
 }
 
 /**
@@ -193,9 +207,16 @@ void Cheddar::newRound() {
      */
     this->lastRow = 0;
     this->lastCol = -1;
+    this->lastHitRow = 0;
+    this->lastHitCol = 0;
     this->numShipsPlaced = 0;
 
     this->initializeBoard();
+	
+	this->shotmode = SEEK; // begin by looking for ships
+	this->td = RIGHT;
+	this->row = 0;
+	this->col = 0;
 }
 
 /**
@@ -275,14 +296,37 @@ void Cheddar::updateCheddarBoard(int row, int col, int length, int dir) {
 	}
 }
 
+void Cheddar::searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm) {
+	for(int r = 0; r < boardSize; r++) {
+		for(int c = 0; c < boardSize; c++) {
+			if(board[r][c] == HIT) {
+				nextRow = r;
+				nextCol = c;
+				sm = HUNT;
+				return;
+			}
+		}
+	}
+
+	sm = SEEK;
+	return;
+}
+
 /**
  * @brief Updates the AI with the results of its shots and where the opponent is shooting.
  * @param msg Message specifying what happened + row/col as appropriate.
  */
 void Cheddar::update(Message msg) {
     switch(msg.getMessageType()) {
-	case HIT:
-	case KILL:
+	case HIT:  shotmode = HUNT;
+			   board[msg.getRow()][msg.getCol()] = msg.getMessageType();
+			   lastHitRow = msg.getRow();
+			   lastHitCol = msg.getCol();
+			   break;
+	case KILL: shotmode = SEEK; // TODO: Dynamically check for other unresolved hits after kills -- write a function to go in this switch statement
+			   board[msg.getRow()][msg.getCol()] = msg.getMessageType();
+			   searchForDamagedShips(row, col, shotmode);
+			   break; 
 	case MISS:
 	    board[msg.getRow()][msg.getCol()] = msg.getMessageType();
 	    break;
