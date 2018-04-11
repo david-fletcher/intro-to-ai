@@ -31,7 +31,7 @@ Cheddar::Cheddar( int boardSz )
     :PlayerV2(boardSz)
 {
 	boardSize = boardSz;
-   	
+	srand(11);   	
 	// Could do any initialization of inter-round data structures here.
 }
 
