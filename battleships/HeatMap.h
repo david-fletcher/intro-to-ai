@@ -2,6 +2,7 @@
 #define HeatMap_H
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -11,12 +12,14 @@ class HeatMap {
 		~HeatMap() {};
 		void GetShot(int& rowToShoot, int& colToShoot);
 		void initializeHeatMap(int sizeOfBoard);
+		void generateProbability(int playerBoard[10][10]);
+		void addShip(int shipSize);
+		void printHeatMap();
 	private:
 		int map[10][10];
 		int basicProbabilityMap[10][10];
 		int boardSize;
-		
-		void generateProbability(int shipSize);
+		vector<int> shipLengths;		
 };
 
 #endif
