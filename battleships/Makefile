@@ -15,9 +15,11 @@ CXX = g++
 # Add your player on the line after GamblerPlayer 
 ################################################
 CONTESTOBJECTS = AIContest.o BoardV3.o Message.o PlayerV2.o conio.o contest.o \
-	Cheddar.o CleanPlayerV2.o GamblerPlayerV2.o LearningGambler.o SemiSmartPlayerV2.o
+	HeatMap.o \
+	Cheddar.o CleanPlayerV2.o GamblerPlayerV2.o LearningGambler.o SemiSmartPlayerV2.o \
 
 TESTEROBJECTS = AIContest.o BoardV3.o Message.o PlayerV2.o conio.o tester.o \
+	HeatMap.o \
 	Cheddar.o CleanPlayerV2.o GamblerPlayerV2.o LearningGambler.o SemiSmartPlayerV2.o \
 
 HOST_NAME := $(shell hostname)
@@ -68,6 +70,9 @@ tester.cpp: defines.h Message.cpp
 
 Message.o: Message.cpp defines.h
 Message.cpp: Message.h defines.h
+
+HeatMap.o: HeatMap.cpp
+HeatMap.cpp: HeatMap.h
 
 conio.o: conio.cpp
 conio.cpp: conio.h

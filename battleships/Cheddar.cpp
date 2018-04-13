@@ -31,7 +31,7 @@ Cheddar::Cheddar( int boardSz )
     :PlayerV2(boardSz)
 {
 	boardSize = boardSz;
-	srand(11);   	
+	heatMap = new HeatMap(boardSize);
 	// Could do any initialization of inter-round data structures here.
 }
 
@@ -268,7 +268,7 @@ void Cheddar::findShipLocation(int &row, int &col, int length, int dir) {
 		col = rand() % boardSize;
 
 		for( int r = row; r < row + length; r++ ) {
-			if( cheddarBoard[r][col] == '~' ) { continue; }
+			if( cheddarBoard[r][col] == WATER ) { continue; }
 			else { findShipLocation( row, col, length, dir ); break; }
 		}
 	}
@@ -277,7 +277,7 @@ void Cheddar::findShipLocation(int &row, int &col, int length, int dir) {
 		row = rand() % boardSize;
 
 		for( int c = col; c < col + length; c++ ) {
-			if( cheddarBoard[row][c] == '~' ) { continue; }
+			if( cheddarBoard[row][c] == WATER ) { continue; }
 			else { findShipLocation( row, col, length, dir ); break; }
 		}
 	}
@@ -325,7 +325,7 @@ void Cheddar::update(Message msg) {
 			   break;
 	case KILL: shotmode = SEEK; // TODO: Dynamically check for other unresolved hits after kills -- write a function to go in this switch statement
 			   board[msg.getRow()][msg.getCol()] = msg.getMessageType();
-			   searchForDamagedShips(row, col, shotmode);
+			   searchForDamagedShips(lastHitRow, lastHitCol, shotmode);
 			   break; 
 	case MISS:
 	    board[msg.getRow()][msg.getCol()] = msg.getMessageType();

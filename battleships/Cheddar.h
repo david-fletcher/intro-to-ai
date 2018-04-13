@@ -15,6 +15,7 @@ using namespace std;
 #include "Message.h"
 #include "defines.h"
 #include "conio.h"
+#include "HeatMap.h"
 
 // DumbPlayer inherits from/extends PlayerV2
 
@@ -37,6 +38,7 @@ class Cheddar: public PlayerV2 {
 	void searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm);
 	int boardSize;
 	void initializeBoard();
+		HeatMap heatMap;
         ShotMode shotmode;
 		TargetDirection td;
 		int lastRow, lastCol, row, col, lastHitRow, lastHitCol;
