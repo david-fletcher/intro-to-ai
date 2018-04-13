@@ -17,7 +17,7 @@ using namespace std;
 #include "conio.h"
 #include "HeatMap.h"
 
-// DumbPlayer inherits from/extends PlayerV2
+// Da Cheese inherits from/extends PlayerV2
 
 class Cheddar: public PlayerV2 {
     public:

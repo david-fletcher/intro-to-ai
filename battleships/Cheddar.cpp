@@ -15,7 +15,7 @@
 #include <cstdio>
 
 #include "Cheddar.h"
-
+#include "HeatMap.h"
 
 /**
  * @brief Constructor that initializes any inter-round data structures.
@@ -27,12 +27,11 @@
  * before rounds; newRound() gets called before every round.
  */
 
-Cheddar::Cheddar( int boardSz )
-    :PlayerV2(boardSz)
+Cheddar::Cheddar( int boardSz ) :PlayerV2(boardSz)
 {
 	boardSize = boardSz;
-	heatMap = new HeatMap(boardSize);
 	// Could do any initialization of inter-round data structures here.
+	heatMap.initializeHeatMap(boardSz);
 }
 
 /**
