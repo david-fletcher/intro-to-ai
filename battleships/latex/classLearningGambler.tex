@@ -1,0 +1,114 @@
+\hypertarget{classLearningGambler}{}\section{Learning\+Gambler Class Reference}
+\label{classLearningGambler}\index{Learning\+Gambler@{Learning\+Gambler}}
+
+
+Inheritance diagram for Learning\+Gambler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classLearningGambler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Learning\+Gambler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classLearningGambler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Learning\+Gambler} (int board\+Size)\hypertarget{classLearningGambler_ac19aaeb72ad651c3ff0d138f88e2803f}{}\label{classLearningGambler_ac19aaeb72ad651c3ff0d138f88e2803f}
+
+\item 
+void \hyperlink{classLearningGambler_ac1b46d154d2dfa2aba5f1dff5e8c37e0}{new\+Round} ()
+\begin{DoxyCompactList}\small\item\em Tells the player to prepare for a new round in a game against the same opponent. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classLearningGambler_aaa1f666a184cb47ef8d7d6870654d5d1}{place\+Ship} (int length)
+\begin{DoxyCompactList}\small\item\em Used to inform the game controller of where the player wishes to place a ship. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classLearningGambler_a4f3fe17dbd2368a8561117442bc1cc3e}{get\+Move} ()
+\begin{DoxyCompactList}\small\item\em Gets the player\textquotesingle{}s move choice. This is then returned to the caller. \end{DoxyCompactList}\item 
+void \hyperlink{classLearningGambler_a40f003de6770045d83167434ffd4d407}{update} (\hyperlink{classMessage}{Message} msg)
+\begin{DoxyCompactList}\small\item\em Informs the player of the results of move\textquotesingle{}s by player or opponent. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{Learning\+Gambler@{Learning\+Gambler}!get\+Move@{get\+Move}}
+\index{get\+Move@{get\+Move}!Learning\+Gambler@{Learning\+Gambler}}
+\subsubsection[{\texorpdfstring{get\+Move()}{getMove()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Learning\+Gambler\+::get\+Move (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classLearningGambler_a4f3fe17dbd2368a8561117442bc1cc3e}{}\label{classLearningGambler_a4f3fe17dbd2368a8561117442bc1cc3e}
+
+
+Gets the player\textquotesingle{}s move choice. This is then returned to the caller. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} move This is a pure virtual function. The Player class declares, but does not define it. That allows a class to force all derived classes to implement the functionality. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}{Player\+V2}.
+
+\index{Learning\+Gambler@{Learning\+Gambler}!new\+Round@{new\+Round}}
+\index{new\+Round@{new\+Round}!Learning\+Gambler@{Learning\+Gambler}}
+\subsubsection[{\texorpdfstring{new\+Round()}{newRound()}}]{\setlength{\rightskip}{0pt plus 5cm}void Learning\+Gambler\+::new\+Round (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classLearningGambler_ac1b46d154d2dfa2aba5f1dff5e8c37e0}{}\label{classLearningGambler_ac1b46d154d2dfa2aba5f1dff5e8c37e0}
+
+
+Tells the player to prepare for a new round in a game against the same opponent. 
+
+The player should reinitialize any round-\/specific data structures. This is not the same as the constructor, which must initialize all data structures that will last the duration of the entire game. I.\+e., any inter-\/round learning data structures should be initialized in the constructor and not here, while intra-\/round data structures need to be initialized here. 
+
+Implements \hyperlink{classPlayerV2_afb845a64b9ee9840b1512b1ccd69489a}{Player\+V2}.
+
+\index{Learning\+Gambler@{Learning\+Gambler}!place\+Ship@{place\+Ship}}
+\index{place\+Ship@{place\+Ship}!Learning\+Gambler@{Learning\+Gambler}}
+\subsubsection[{\texorpdfstring{place\+Ship(int length)}{placeShip(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Learning\+Gambler\+::place\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classLearningGambler_aaa1f666a184cb47ef8d7d6870654d5d1}{}\label{classLearningGambler_aaa1f666a184cb47ef8d7d6870654d5d1}
+
+
+Used to inform the game controller of where the player wishes to place a ship. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} Indicates the row, col, and direction information for the ship to be placed. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classPlayerV2_aebf171921d494578b592422210621a9a}{Player\+V2}.
+
+\index{Learning\+Gambler@{Learning\+Gambler}!update@{update}}
+\index{update@{update}!Learning\+Gambler@{Learning\+Gambler}}
+\subsubsection[{\texorpdfstring{update(\+Message msg)}{update(Message msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Learning\+Gambler\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classLearningGambler_a40f003de6770045d83167434ffd4d407}{}\label{classLearningGambler_a40f003de6770045d83167434ffd4d407}
+
+
+Informs the player of the results of move\textquotesingle{}s by player or opponent. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message will have the shot coordinates (row, col) and the shot result available via the message\+Type. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}{Player\+V2}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Learning\+Gambler.\+h\end{DoxyCompactItemize}

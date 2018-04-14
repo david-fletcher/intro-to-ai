@@ -1,21 +1,19 @@
 /**
- * @brief DumbPlayer AI for battleships
- * @file DumbPlayerV2.cpp
- * @author Stefan Brandle, Jonathan Geisler
- * @date September, 2004 Updated 2015 for multi-round play.
+ * @brief Cheddar AI for battleships
+ * @file Cheddar.cpp
+ * @author Stefan Brandle, Jonathan Geisler, Jordan Wood, David Fletcher, Ryan Houck
+ * @date September, 2004, Updated 2015 for multi-round play, last modified April 14, 2018 to make an improved AI
  *
- * This Battleships AI is very simple and does nothing beyond playing
- * a legal game. However, that makes it a good starting point for writing
- * a more sophisticated AI.
- *
- * The constructor
+ * This Battleships AI is the 2018 Spring code written by Jordan Wood,
+ * David Fletcher, and Ryan Houck (based upon Dr. Brandle and Dr.
+ * Geisler's base code that placed ships in the top left corner and
+ * shot from left to right, then top to bottom).
  */
 
 #include <iostream>
 #include <cstdio>
 
 #include "Cheddar.h"
-#include "HeatMap.h"
 
 /**
  * @brief Constructor that initializes any inter-round data structures.
@@ -26,11 +24,8 @@
  * before any of the rounds happen. The constructor does not get called 
  * before rounds; newRound() gets called before every round.
  */
-
-Cheddar::Cheddar( int boardSz ) :PlayerV2(boardSz)
-{
+Cheddar::Cheddar( int boardSz ) :PlayerV2(boardSz) {
 	boardSize = boardSz;
-	// Could do any initialization of inter-round data structures here.
 	heatMap.initializeHeatMap(boardSz);
 	shipMap.initializeShipMap(boardSz);
 }
@@ -42,8 +37,8 @@ Cheddar::Cheddar( int boardSz ) :PlayerV2(boardSz)
  */
 Cheddar::~Cheddar( ) {}
 
-/*
- * Private internal function that initializes a MAX_BOARD_SIZE 2D array of char to water.
+/**
+ * @brief: Private internal function that initializes a MAX_BOARD_SIZE 2D array of char to water.
  */
 void Cheddar::initializeBoard() {
     for(int row=0; row<boardSize; row++) {
@@ -81,7 +76,7 @@ Message Cheddar::getMove() {
 			return getMove();
 		}
 	} else if(shotmode == HUNT) {
-		huntForKill(row, col, lastHitRow, lastHitCol, td, shotmode);
+		huntForKill(row, col, lastHitRow, lastHitCol, td);
 
 		if(isValidMove(row, col)){
 			Message result( SHOT, row, col, "Bang", None, 1 );
@@ -99,10 +94,13 @@ Message Cheddar::getMove() {
 
 /**
   * @brief Checks adjacent spots for a kill after getting a hit
-  * @param col The pointer for the column
-  * @param row The pointer for the row
+  * @param col The pointer for the current column being looked at.
+  * @param row The pointer for the current row being looked at.
+  * @param lastHitR The row index of the last hit that was processed.
+  * @param lastHitC The column index of the last hit that was processed.
+  * @param direction The pointer for the direction that you are shooting (ByRef).
   */
-void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHitC, TargetDirection& direction, ShotMode& shotstrats ) {
+void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHitC, TargetDirection& direction) {
 	switch( direction ) {
 		case UP:   if( lastHitR > 0 ) { 
 						if( board[lastHitR-1][lastHitC] == WATER ) {
@@ -110,18 +108,18 @@ void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHit
 							shotCol = lastHitC;
 						}
 						else if( board[lastHitR-1][lastHitC] == HIT ) {
-							huntForKill( shotRow, shotCol, lastHitR-1, lastHitC, direction, shotstrats );
+							huntForKill( shotRow, shotCol, lastHitR-1, lastHitC, direction );
 							return;
 						}
 						else if( board[lastHitR-1][lastHitC] == MISS || board[lastHitR-1][lastHitC] == KILL ) {
 							direction = RIGHT;
-							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 							return;
 						}
 					}
 					else {
 						direction = RIGHT;
-						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats );
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 						return;
 					}
 				   break;
@@ -131,18 +129,18 @@ void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHit
 							shotCol = lastHitC;
 						}
 						else if( board[lastHitR+1][lastHitC] == HIT ) {
-							huntForKill( shotRow, shotCol, lastHitR+1, lastHitC, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR+1, lastHitC, direction );
 							return;
 						}
 						else if( board[lastHitR+1][lastHitC] == MISS || board[lastHitR+1][lastHitC] == KILL ) {
 							direction = UP;
-							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 							return;
 						}
 					}
 					else {
 						direction = UP;
-						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 						return;
 					}
 					break;
@@ -152,18 +150,18 @@ void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHit
 							shotCol = lastHitC-1;
 						}
 						else if( board[lastHitR][lastHitC-1] == HIT ) {
-							huntForKill( shotRow, shotCol, lastHitR, lastHitC-1, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC-1, direction );
 							return;
 						}
 						else if( board[lastHitR][lastHitC-1] == MISS || board[lastHitR][lastHitC-1] == KILL ) {
 							direction = DOWN;
-							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 							return;
 						}
 					}
 					else {
 						direction = DOWN;
-						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 						return;
 					}
 					break;
@@ -173,18 +171,18 @@ void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHit
 							shotCol = lastHitC+1;
 						}
 						else if( board[lastHitR][lastHitC+1] == HIT ) {
-							huntForKill( shotRow, shotCol, lastHitR, lastHitC+1, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC+1, direction );
 							return;
 						}
 						else if( board[lastHitR][lastHitC+1] == MISS || board[lastHitR][lastHitC+1] == KILL ) {
 							direction = LEFT;
-							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+							huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 							return;
 						}
 					}
 					else {
 						direction = LEFT;
-						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction, shotstrats  );
+						huntForKill( shotRow, shotCol, lastHitR, lastHitC, direction );
 						return;
 					}
 					break;
@@ -192,18 +190,18 @@ void Cheddar::huntForKill( int& shotRow, int& shotCol, int lastHitR, int lastHit
 	}
 }
 
+/**
+ * @brief Checks if a move is valid.
+ * @return True if the move is valid, false otherwise.
+ */
 bool Cheddar::isValidMove(int row, int col){
-	return (row >= 0 && row < boardSize && col >= 0 && col < boardSize) && (board[row][col] == WATER);
+	return (board[row][col] == WATER);
 }
 
 /**
- * @brief Tells the AI that a new round is beginning.
- * The AI show reinitialize any intra-round data structures.
+ * @brief Performs any inter-round initialization.
  */
 void Cheddar::newRound() {
-    /* DumbPlayer is too simple to do any inter-round learning. Smarter players 
-     * reinitialize any round-specific data structures here.
-     */
     this->lastRow = 0;
     this->lastCol = -1;
     this->lastHitRow = 0;
@@ -242,15 +240,6 @@ Message Cheddar::placeShip(int length) {
 	heatMap.addShip(length);
 	int row, col, dir;
 
-	/* RANDOM SHIP PLACEMENT
-
-	dir = rand() % 2;
-
-	findShipLocation(row, col, length, dir);
-
-	updateCheddarBoard(row, col, length, dir);
-	*/
-
 	shipMap.bestShipLocation(length, row, col, dir);
 
 	if( dir == 0 ) {
@@ -264,33 +253,15 @@ Message Cheddar::placeShip(int length) {
 
 		return response;
 	}
-	
-    // parameters = mesg type (PLACE_SHIP), row, col, a string, direction (Horizontal/Vertical)
 }
 
-void Cheddar::findShipLocation(int &row, int &col, int length, int dir) {
-	
-	if( dir == 1 ) {
-		row = rand() % (boardSize - length + 1);
-		col = rand() % boardSize;
-
-		for( int r = row; r < row + length; r++ ) {
-			if( cheddarBoard[r][col] == WATER ) { continue; }
-			else { findShipLocation( row, col, length, dir ); break; }
-		}
-	}
-	else {	
-		col = rand() % (boardSize - length + 1);
-		row = rand() % boardSize;
-
-		for( int c = col; c < col + length; c++ ) {
-			if( cheddarBoard[row][c] == WATER ) { continue; }
-			else { findShipLocation( row, col, length, dir ); break; }
-		}
-	}
-
-}
-
+/**
+ * @brief Updates the ship placement board.
+ * @param row The row index of the ship's starting location.
+ * @param col The column index of the ship's starting location.
+ * @param length The length of the ship.
+ * @param dir An integer that holds the direction of the ship (0 = horizontal, 1 = vertical).
+ */
 void Cheddar::updateCheddarBoard(int row, int col, int length, int dir) {
 	if(dir == 0) {
 		for( int c = col; c < col + length; c++ ) {
@@ -303,6 +274,12 @@ void Cheddar::updateCheddarBoard(int row, int col, int length, int dir) {
 	}
 }
 
+/**
+ * @brief Checks the board for damaged ships, and sets the shot mode to hunt if there are any hits (not kills).
+ * @param nextRow The pointer for the row index of a hit (ByRef).
+ * @param nextCol The pointer for the column index of a hit (ByRef).
+ * @param sm The pointer for the shot mode (ByRef).
+ */
 void Cheddar::searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm) {
 	for(int r = 0; r < boardSize; r++) {
 		for(int c = 0; c < boardSize; c++) {
@@ -330,7 +307,7 @@ void Cheddar::update(Message msg) {
 			   lastHitRow = msg.getRow();
 			   lastHitCol = msg.getCol();
 			   break;
-	case KILL: shotmode = SEEK; // TODO: Dynamically check for other unresolved hits after kills -- write a function to go in this switch statement
+	case KILL: shotmode = SEEK;
 			   board[msg.getRow()][msg.getCol()] = msg.getMessageType();
 			   searchForDamagedShips(lastHitRow, lastHitCol, shotmode);
 			   killSize++;
@@ -345,9 +322,6 @@ void Cheddar::update(Message msg) {
 	    break;
 	case OPPONENT_SHOT:
 		opponentShots[msg.getRow()][msg.getCol()] = MISS;
-	    // TODO: get rid of the cout, but replace in your AI with code that does something
-	    // useful with the information about where the opponent is shooting.
-	    //cout << gotoRowCol(20, 30) << "DumbPl: opponent shot at "<< msg.getRow() << ", " << msg.getCol() << flush;
 	    break;
     }
 }

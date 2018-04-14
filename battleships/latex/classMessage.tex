@@ -1,0 +1,251 @@
+\hypertarget{classMessage}{}\section{Message Class Reference}
+\label{classMessage}\index{Message@{Message}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Message} (char message\+Type)\hypertarget{classMessage_a686de693caae6801c4166059c27b7d08}{}\label{classMessage_a686de693caae6801c4166059c27b7d08}
+
+\item 
+\hyperlink{classMessage_a80ab6afe392ce5e694b447afd9044157}{Message} (char message\+Type, int row, int col, string str)
+\item 
+\hyperlink{classMessage_ae9e528554719adc2f777127eef25dc2f}{Message} (char message\+Type, int row, int col, string str, Direction direction, int length)
+\item 
+void \hyperlink{classMessage_a94c72e31b237a6fdf5b7e8322b95968d}{set\+Message} (char message\+Type, int row, int col, string str, Direction dir, int length)
+\item 
+void \hyperlink{classMessage_a4b4d42daa2c19f73bff2d8f29dc804df}{set\+Message\+Type} (char message\+Type)
+\item 
+char \hyperlink{classMessage_a884cdb00112d8a9384f6104dc3337e4b}{get\+Message\+Type} ()
+\item 
+void \hyperlink{classMessage_a7a8c1fc4ff5a7bf0e655fa0687c7df4e}{set\+Row} (int row)
+\item 
+int \hyperlink{classMessage_aa2708d74b1d58537422a83a37b6a275f}{get\+Row} ()
+\item 
+void \hyperlink{classMessage_a7717e65a880cb26ad71b42f4329dd454}{set\+Col} (int col)
+\item 
+int \hyperlink{classMessage_a4fa8083689146e7edf15d657ee50e269}{get\+Col} ()
+\item 
+void \hyperlink{classMessage_a5aae5916bada80e8479cb8fe74228328}{set\+String} (string str)
+\item 
+string \hyperlink{classMessage_a7c8749c950d40f3fc0c1f784ddfb74ce}{get\+String} ()
+\item 
+void \hyperlink{classMessage_afa618cd45633822b6cc6b4442be59575}{set\+Direction} (Direction dir)
+\item 
+Direction \hyperlink{classMessage_ae5d197bb228eaf467ec5dc388b917f0e}{get\+Direction} ()
+\item 
+void \hyperlink{classMessage_a3744f027955cc28cc1b47a2ea807fb60}{set\+Length} (int length)
+\item 
+int \hyperlink{classMessage_a251e53a9658b9f5baa5eac040d81c7ab}{get\+Length} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Message@{Message}!Message@{Message}}
+\index{Message@{Message}!Message@{Message}}
+\subsubsection[{\texorpdfstring{Message(char message\+Type, int row, int col, string str)}{Message(char messageType, int row, int col, string str)}}]{\setlength{\rightskip}{0pt plus 5cm}Message\+::\+Message (
+\begin{DoxyParamCaption}
+\item[{char}]{message\+Type, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{string}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a80ab6afe392ce5e694b447afd9044157}{}\label{classMessage_a80ab6afe392ce5e694b447afd9044157}
+Initializes the object message type to the specified values. 
+\begin{DoxyParams}{Parameters}
+{\em message\+Type} & This should be one of the defined \char`\"{}final static char\char`\"{} values in the Defines class. \\
+\hline
+{\em row} & The row related to the message. \\
+\hline
+{\em col} & The col related to the message. \\
+\hline
+{\em str} & The string message related to the message. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!Message@{Message}}
+\index{Message@{Message}!Message@{Message}}
+\subsubsection[{\texorpdfstring{Message(char message\+Type, int row, int col, string str, Direction direction, int length)}{Message(char messageType, int row, int col, string str, Direction direction, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}Message\+::\+Message (
+\begin{DoxyParamCaption}
+\item[{char}]{message\+Type, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{string}]{str, }
+\item[{Direction}]{dir, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_ae9e528554719adc2f777127eef25dc2f}{}\label{classMessage_ae9e528554719adc2f777127eef25dc2f}
+Initializes the object message type to the specified values. 
+\begin{DoxyParams}{Parameters}
+{\em message\+Type} & This should be one of the defined \char`\"{}final static char\char`\"{} values in the Defines class. \\
+\hline
+{\em row} & The row related to the message. \\
+\hline
+{\em col} & The col related to the message. \\
+\hline
+{\em str} & The string message related to the message. \\
+\hline
+{\em dir} & The direction related to the message. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Message@{Message}!get\+Col@{get\+Col}}
+\index{get\+Col@{get\+Col}!Message@{Message}}
+\subsubsection[{\texorpdfstring{get\+Col()}{getCol()}}]{\setlength{\rightskip}{0pt plus 5cm}int Message\+::get\+Col (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a4fa8083689146e7edf15d657ee50e269}{}\label{classMessage_a4fa8083689146e7edf15d657ee50e269}
+Returns the message col. \begin{DoxyReturn}{Returns}
+col The col value for this message. This is undefined for non shot related messages. 
+\end{DoxyReturn}
+\index{Message@{Message}!get\+Direction@{get\+Direction}}
+\index{get\+Direction@{get\+Direction}!Message@{Message}}
+\subsubsection[{\texorpdfstring{get\+Direction()}{getDirection()}}]{\setlength{\rightskip}{0pt plus 5cm}Direction Message\+::get\+Direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_ae5d197bb228eaf467ec5dc388b917f0e}{}\label{classMessage_ae5d197bb228eaf467ec5dc388b917f0e}
+Returns the direction value. \begin{DoxyReturn}{Returns}
+Direction 
+\end{DoxyReturn}
+\index{Message@{Message}!get\+Length@{get\+Length}}
+\index{get\+Length@{get\+Length}!Message@{Message}}
+\subsubsection[{\texorpdfstring{get\+Length()}{getLength()}}]{\setlength{\rightskip}{0pt plus 5cm}int Message\+::get\+Length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a251e53a9658b9f5baa5eac040d81c7ab}{}\label{classMessage_a251e53a9658b9f5baa5eac040d81c7ab}
+Returns the length value. \begin{DoxyReturn}{Returns}
+length 
+\end{DoxyReturn}
+\index{Message@{Message}!get\+Message\+Type@{get\+Message\+Type}}
+\index{get\+Message\+Type@{get\+Message\+Type}!Message@{Message}}
+\subsubsection[{\texorpdfstring{get\+Message\+Type()}{getMessageType()}}]{\setlength{\rightskip}{0pt plus 5cm}char Message\+::get\+Message\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a884cdb00112d8a9384f6104dc3337e4b}{}\label{classMessage_a884cdb00112d8a9384f6104dc3337e4b}
+Returns the message type. \begin{DoxyReturn}{Returns}
+message\+Type 
+\end{DoxyReturn}
+\index{Message@{Message}!get\+Row@{get\+Row}}
+\index{get\+Row@{get\+Row}!Message@{Message}}
+\subsubsection[{\texorpdfstring{get\+Row()}{getRow()}}]{\setlength{\rightskip}{0pt plus 5cm}int Message\+::get\+Row (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_aa2708d74b1d58537422a83a37b6a275f}{}\label{classMessage_aa2708d74b1d58537422a83a37b6a275f}
+Returns the message row. \begin{DoxyReturn}{Returns}
+row The row value for this message. This is undefined for non shot related messages. 
+\end{DoxyReturn}
+\index{Message@{Message}!get\+String@{get\+String}}
+\index{get\+String@{get\+String}!Message@{Message}}
+\subsubsection[{\texorpdfstring{get\+String()}{getString()}}]{\setlength{\rightskip}{0pt plus 5cm}string Message\+::get\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a7c8749c950d40f3fc0c1f784ddfb74ce}{}\label{classMessage_a7c8749c950d40f3fc0c1f784ddfb74ce}
+Returns the message string. \begin{DoxyReturn}{Returns}
+String The string value for this message. This is an optional field that may or may not be used for various messages at the discretion of the participants. 
+\end{DoxyReturn}
+\index{Message@{Message}!set\+Col@{set\+Col}}
+\index{set\+Col@{set\+Col}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+Col(int col)}{setCol(int col)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+Col (
+\begin{DoxyParamCaption}
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a7717e65a880cb26ad71b42f4329dd454}{}\label{classMessage_a7717e65a880cb26ad71b42f4329dd454}
+Sets the message col. 
+\begin{DoxyParams}{Parameters}
+{\em col} & The col value for this message. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!set\+Direction@{set\+Direction}}
+\index{set\+Direction@{set\+Direction}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+Direction(\+Direction dir)}{setDirection(Direction dir)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+Direction (
+\begin{DoxyParamCaption}
+\item[{Direction}]{dir}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_afa618cd45633822b6cc6b4442be59575}{}\label{classMessage_afa618cd45633822b6cc6b4442be59575}
+Sets the Direction value. 
+\begin{DoxyParams}{Parameters}
+{\em dir} & The direction value for this message. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!set\+Length@{set\+Length}}
+\index{set\+Length@{set\+Length}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+Length(int length)}{setLength(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+Length (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a3744f027955cc28cc1b47a2ea807fb60}{}\label{classMessage_a3744f027955cc28cc1b47a2ea807fb60}
+Sets the length value. 
+\begin{DoxyParams}{Parameters}
+{\em dir} & The length value for this message. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!set\+Message@{set\+Message}}
+\index{set\+Message@{set\+Message}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+Message(char message\+Type, int row, int col, string str, Direction dir, int length)}{setMessage(char messageType, int row, int col, string str, Direction dir, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+Message (
+\begin{DoxyParamCaption}
+\item[{char}]{message\+Type, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{string}]{str, }
+\item[{Direction}]{dir, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a94c72e31b237a6fdf5b7e8322b95968d}{}\label{classMessage_a94c72e31b237a6fdf5b7e8322b95968d}
+Sets the message data to the specified values. 
+\begin{DoxyParams}{Parameters}
+{\em message\+Type} & This should be one of the defined \char`\"{}final static char\char`\"{} values in the Defines class. \\
+\hline
+{\em row} & The row related to the message. \\
+\hline
+{\em col} & The col related to the message. \\
+\hline
+{\em str} & The string message related to the message. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!set\+Message\+Type@{set\+Message\+Type}}
+\index{set\+Message\+Type@{set\+Message\+Type}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+Message\+Type(char message\+Type)}{setMessageType(char messageType)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+Message\+Type (
+\begin{DoxyParamCaption}
+\item[{char}]{message\+Type}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a4b4d42daa2c19f73bff2d8f29dc804df}{}\label{classMessage_a4b4d42daa2c19f73bff2d8f29dc804df}
+Sets the message type. 
+\begin{DoxyParams}{Parameters}
+{\em message\+Type} & The message type. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!set\+Row@{set\+Row}}
+\index{set\+Row@{set\+Row}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+Row(int row)}{setRow(int row)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+Row (
+\begin{DoxyParamCaption}
+\item[{int}]{row}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a7a8c1fc4ff5a7bf0e655fa0687c7df4e}{}\label{classMessage_a7a8c1fc4ff5a7bf0e655fa0687c7df4e}
+Sets the message row. 
+\begin{DoxyParams}{Parameters}
+{\em row} & The row value for this message. \\
+\hline
+\end{DoxyParams}
+\index{Message@{Message}!set\+String@{set\+String}}
+\index{set\+String@{set\+String}!Message@{Message}}
+\subsubsection[{\texorpdfstring{set\+String(string str)}{setString(string str)}}]{\setlength{\rightskip}{0pt plus 5cm}void Message\+::set\+String (
+\begin{DoxyParamCaption}
+\item[{string}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{classMessage_a5aae5916bada80e8479cb8fe74228328}{}\label{classMessage_a5aae5916bada80e8479cb8fe74228328}
+Sets the message string. 
+\begin{DoxyParams}{Parameters}
+{\em str} & The string value for this message. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Message.\+h\item 
+Message.\+cpp\end{DoxyCompactItemize}

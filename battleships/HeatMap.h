@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <vector>
+#include <iomanip>
 #include "defines.h"
 
 using namespace std;
 
 class HeatMap {
 	public:
-		HeatMap();
+		HeatMap() {};
 		~HeatMap() {};
 		void getShot(int& rowToShoot, int& colToShoot);
 		void initializeHeatMap(int sizeOfBoard);
@@ -19,11 +20,10 @@ class HeatMap {
 		void printHeatMap();
 		void printShipVector();
 	private:
-		int map[10][10];
-		int basicProbabilityMap[10][10];
-		int boardSize;
-		vector<int> shipLengths;
 		void resetHeatMap();
+			int basicProbabilityMap[10][10];
+			int boardSize;
+			vector<int> shipLengths;
 };
 
 #endif

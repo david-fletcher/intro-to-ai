@@ -1,0 +1,135 @@
+\hypertarget{classDumbPlayerV2}{}\section{Dumb\+Player\+V2 Class Reference}
+\label{classDumbPlayerV2}\index{Dumb\+Player\+V2@{Dumb\+Player\+V2}}
+
+
+Inheritance diagram for Dumb\+Player\+V2\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classDumbPlayerV2__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Dumb\+Player\+V2\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classDumbPlayerV2__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDumbPlayerV2_af19f38c65f8a0ebc19665667be54e1b4}{Dumb\+Player\+V2} (int board\+Size)
+\begin{DoxyCompactList}\small\item\em Constructor that initializes any inter-\/round data structures. \end{DoxyCompactList}\item 
+\hyperlink{classDumbPlayerV2_ae43353dc5fec8a7b3149daca75141966}{$\sim$\+Dumb\+Player\+V2} ()\hypertarget{classDumbPlayerV2_ae43353dc5fec8a7b3149daca75141966}{}\label{classDumbPlayerV2_ae43353dc5fec8a7b3149daca75141966}
+
+\begin{DoxyCompactList}\small\item\em Destructor placeholder. If your code does anything that requires cleanup when the object is destroyed, do it here in the destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classDumbPlayerV2_ae7c2704abc026cf6ca36afbd7bce5e23}{new\+Round} ()\hypertarget{classDumbPlayerV2_ae7c2704abc026cf6ca36afbd7bce5e23}{}\label{classDumbPlayerV2_ae7c2704abc026cf6ca36afbd7bce5e23}
+
+\begin{DoxyCompactList}\small\item\em Tells the AI that a new round is beginning. The AI show reinitialize any intra-\/round data structures. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classDumbPlayerV2_a49d3990b3423204c1a367cf71bdb9605}{place\+Ship} (int length)
+\begin{DoxyCompactList}\small\item\em Gets the AI\textquotesingle{}s ship placement choice. This is then returned to the caller. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classDumbPlayerV2_a1e28ee8b3b05ce9188a276028ef9b424}{get\+Move} ()
+\begin{DoxyCompactList}\small\item\em Specifies the AI\textquotesingle{}s shot choice and returns the information to the caller. \end{DoxyCompactList}\item 
+void \hyperlink{classDumbPlayerV2_a9e91bb555844a7a1ec60edfffcb1be76}{update} (\hyperlink{classMessage}{Message} msg)
+\begin{DoxyCompactList}\small\item\em Updates the AI with the results of its shots and where the opponent is shooting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Dumb\+Player\+V2@{Dumb\+Player\+V2}!Dumb\+Player\+V2@{Dumb\+Player\+V2}}
+\index{Dumb\+Player\+V2@{Dumb\+Player\+V2}!Dumb\+Player\+V2@{Dumb\+Player\+V2}}
+\subsubsection[{\texorpdfstring{Dumb\+Player\+V2(int board\+Size)}{DumbPlayerV2(int boardSize)}}]{\setlength{\rightskip}{0pt plus 5cm}Dumb\+Player\+V2\+::\+Dumb\+Player\+V2 (
+\begin{DoxyParamCaption}
+\item[{int}]{board\+Size}
+\end{DoxyParamCaption}
+)}\hypertarget{classDumbPlayerV2_af19f38c65f8a0ebc19665667be54e1b4}{}\label{classDumbPlayerV2_af19f38c65f8a0ebc19665667be54e1b4}
+
+
+Constructor that initializes any inter-\/round data structures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board\+Size} & Indication of the size of the board that is in use.\\
+\hline
+\end{DoxyParams}
+The constructor runs when the AI is instantiated (the object gets created) and is responsible for initializing everything that needs to be initialized before any of the rounds happen. The constructor does not get called before rounds; \hyperlink{classDumbPlayerV2_ae7c2704abc026cf6ca36afbd7bce5e23}{new\+Round()} gets called before every round. 
+
+\subsection{Member Function Documentation}
+\index{Dumb\+Player\+V2@{Dumb\+Player\+V2}!get\+Move@{get\+Move}}
+\index{get\+Move@{get\+Move}!Dumb\+Player\+V2@{Dumb\+Player\+V2}}
+\subsubsection[{\texorpdfstring{get\+Move()}{getMove()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Dumb\+Player\+V2\+::get\+Move (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classDumbPlayerV2_a1e28ee8b3b05ce9188a276028ef9b424}{}\label{classDumbPlayerV2_a1e28ee8b3b05ce9188a276028ef9b424}
+
+
+Specifies the AI\textquotesingle{}s shot choice and returns the information to the caller. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} The most important parts of the returned message are the row and column values.
+\end{DoxyReturn}
+See the \hyperlink{classMessage}{Message} class documentation for more information on the \hyperlink{classMessage}{Message} constructor. 
+
+Implements \hyperlink{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}{Player\+V2}.
+
+\index{Dumb\+Player\+V2@{Dumb\+Player\+V2}!place\+Ship@{place\+Ship}}
+\index{place\+Ship@{place\+Ship}!Dumb\+Player\+V2@{Dumb\+Player\+V2}}
+\subsubsection[{\texorpdfstring{place\+Ship(int length)}{placeShip(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Dumb\+Player\+V2\+::place\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classDumbPlayerV2_a49d3990b3423204c1a367cf71bdb9605}{}\label{classDumbPlayerV2_a49d3990b3423204c1a367cf71bdb9605}
+
+
+Gets the AI\textquotesingle{}s ship placement choice. This is then returned to the caller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The length of the ship to be placed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} The most important parts of the returned message are the direction, row, and column values.
+\end{DoxyReturn}
+The parameters returned via the message are\+:
+\begin{DoxyEnumerate}
+\item the operation\+: must be P\+L\+A\+C\+E\+\_\+\+S\+H\+IP
+\item ship top row value
+\item ship top col value
+\item a string for the ship name
+\item direction Horizontal/\+Vertical (see \hyperlink{defines_8h_source}{defines.\+h})
+\item ship length (should match the length passed to place\+Ship) 
+\end{DoxyEnumerate}
+
+Implements \hyperlink{classPlayerV2_aebf171921d494578b592422210621a9a}{Player\+V2}.
+
+\index{Dumb\+Player\+V2@{Dumb\+Player\+V2}!update@{update}}
+\index{update@{update}!Dumb\+Player\+V2@{Dumb\+Player\+V2}}
+\subsubsection[{\texorpdfstring{update(\+Message msg)}{update(Message msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Dumb\+Player\+V2\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classDumbPlayerV2_a9e91bb555844a7a1ec60edfffcb1be76}{}\label{classDumbPlayerV2_a9e91bb555844a7a1ec60edfffcb1be76}
+
+
+Updates the AI with the results of its shots and where the opponent is shooting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \hyperlink{classMessage}{Message} specifying what happened + row/col as appropriate. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}{Player\+V2}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Dumb\+Player\+V2.\+h\item 
+\hyperlink{DumbPlayerV2_8cpp}{Dumb\+Player\+V2.\+cpp}\end{DoxyCompactItemize}

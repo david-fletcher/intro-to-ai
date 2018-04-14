@@ -1,16 +1,29 @@
+/**
+ * @brief Cheddar AI HeatMap for Battleships
+ * @file HeatMap.cpp
+ * @authors Jordan Wood, David Fletcher, Ryan Houck
+ * @date April 14, 2018
+ *
+ * This class generates and maintains a heatmap of the probability
+ * of a ship being in any given location. It can also give the index
+ * positions of the most likely location for a ship to be.
+ */
 #include "HeatMap.h"
-#include <iomanip>
 
 using namespace std;
 
-HeatMap::HeatMap(){
-	/* do setup here */
-}
-
+/**
+ * @brief Initializes the heatmap.
+ * @param sizeOfBoard The specified size of the Battleships board.
+ */
 void HeatMap::initializeHeatMap(int sizeOfBoard) {
 	boardSize = sizeOfBoard;
 }
 
+/**
+ * @brief Generates the probability heatmap of a ship being at any location for the given boardstate.
+ * @param playerBoard The board being shot at (containing the opponent's ships).
+ */
 void HeatMap::generateProbability(char playerBoard[10][10]){
 	resetHeatMap();
 	
@@ -58,10 +71,18 @@ void HeatMap::generateProbability(char playerBoard[10][10]){
 	
 }
 
+/**
+ * @brief Adds a ship to the shipLengths vector.
+ * @param shipSize The length of the ship being added.
+ */
 void HeatMap::addShip(int shipSize) {
 	shipLengths.push_back(shipSize);
 }
 
+/**
+ * @brief Removes a ship from the shipLengths vector.
+ * @param shipSize The length of the ship being removed.
+ */
 void HeatMap::deleteShip(int shipSize) {
 	for(unsigned int i = 0; i < shipLengths.size(); i++) {
 		if(shipSize == shipLengths.at(i)) {
@@ -71,22 +92,21 @@ void HeatMap::deleteShip(int shipSize) {
 	}
 }
 
+/**
+ * @brief Prints the heatmap (used for debugging purposes).
+ */
 void HeatMap::printHeatMap() {
 	for(int row = 0; row < boardSize; row++) {
 		for(int col = 0; col < boardSize; col++) {
 			cout << setw(3) << basicProbabilityMap[row][col] << " ";
 		}
-
 		cout << endl << flush;
 	}
 }
 
-void HeatMap::printShipVector() {
-	for(unsigned int i = 0; i < shipLengths.size(); i++) {
-		cout << "Ship: " << shipLengths.at(i) << endl << flush;
-	}
-}
-
+/**
+ * @brief Clears all values in the heatmap to 0.
+ */
 void HeatMap::resetHeatMap() {
 	for(int i = 0; i < boardSize; i++){
 		for(int j = 0; j < boardSize; j++){
@@ -95,6 +115,11 @@ void HeatMap::resetHeatMap() {
 	}
 }
 
+/**
+ * @brief Determines the best location to shoot.
+ * @param rowToShoot The pointer of the optimal row index to shoot at (ByRef).
+ * @param colToShoot The pointer of the optimal column index to shoot at (ByRef).
+ */
 void HeatMap::getShot(int& rowToShoot, int& colToShoot) {
 	int maxIndex = 0;
 	for(int i = 0; i < boardSize; i++) {
@@ -107,39 +132,3 @@ void HeatMap::getShot(int& rowToShoot, int& colToShoot) {
 		}
 	}
 }
-/*
-int main() {
-	char testBoard[10][10] = 
-	{{'~','~','*','~','~','~','~','~','*','~'},
-	 {'~','~','~','~','~','~','~','~','~','~'},
-	 {'~','~','~','~','~','~','~','~','~','~'},
-	 {'~','*','~','K','~','~','*','~','~','~'},
-	 {'~','~','~','K','*','~','~','~','~','~'},
-	 {'~','~','~','K','~','*','~','~','~','~'},
-	 {'~','~','~','K','~','~','~','~','~','~'},
-	 {'~','~','~','~','*','~','~','~','~','~'},
-	 {'~','~','~','~','~','~','~','~','*','~'},
-	 {'~','*','~','~','~','~','~','~','~','~'}};
-
-	HeatMap heatMap;
-	heatMap.initializeHeatMap(10);
-	
-	heatMap.addShip(3);
-	heatMap.addShip(4);
-	heatMap.addShip(5);
-
-	heatMap.deleteShip(4);
-
-	heatMap.generateProbability(testBoard);
-
-	heatMap.printHeatMap();
-
-	int row = 0;
-	int col = 0;
-
-	heatMap.getShot(row, col);
-	cout << "Shooting at x: " << row << " y: " << col << endl << flush;
-
-	return 0;
-}
-*/

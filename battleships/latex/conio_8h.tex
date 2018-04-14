@@ -1,0 +1,101 @@
+\hypertarget{conio_8h}{}\section{conio.\+h File Reference}
+\label{conio_8h}\index{conio.\+h@{conio.\+h}}
+
+
+Declarations for the console I/O functions namespace.  
+
+
+{\ttfamily \#include $<$string$>$}\\*
+Include dependency graph for conio.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=131pt]{conio_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{conio_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceconio}{conio}
+\begin{DoxyCompactList}\small\item\em The conio namespace is a collection of functions that perform console I/O functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{conio\+::\+Color} \{ \\*
+{\bfseries B\+L\+A\+CK} =30, 
+{\bfseries R\+ED} =31, 
+{\bfseries G\+R\+E\+EN} =32, 
+{\bfseries Y\+E\+L\+L\+OW} =33, 
+\\*
+{\bfseries B\+L\+UE} =34, 
+{\bfseries M\+A\+G\+E\+N\+TA} =35, 
+{\bfseries C\+Y\+AN} =36, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+G\+R\+AY} =37, 
+\\*
+{\bfseries R\+E\+S\+ET} =39, 
+{\bfseries G\+R\+AY} =90, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+R\+ED} =91, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+G\+R\+E\+EN} =92, 
+\\*
+{\bfseries L\+I\+G\+H\+T\+\_\+\+Y\+E\+L\+L\+OW} =93, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+B\+L\+UE} =94, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+M\+A\+G\+E\+N\+TA} =95, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+C\+Y\+AN} =96, 
+\\*
+{\bfseries W\+H\+I\+TE} =97
+ \}\hypertarget{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{}\label{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}
+\begin{DoxyCompactList}\small\item\em The Color enumeration lists all the valid colors (foreground and background). \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}{conio\+::\+Text\+Style} \{ \\*
+{\bfseries B\+O\+LD} =1, 
+{\bfseries F\+A\+I\+NT} =2, 
+{\bfseries I\+T\+A\+L\+IC} =3, 
+{\bfseries U\+N\+D\+E\+R\+L\+I\+NE} =4, 
+\\*
+{\bfseries S\+L\+O\+W\+\_\+\+B\+L\+I\+NK} =5, 
+{\bfseries R\+A\+P\+I\+D\+\_\+\+B\+L\+I\+NK} =6, 
+{\bfseries N\+E\+G\+A\+T\+I\+V\+E\+\_\+\+I\+M\+A\+GE} =7, 
+{\bfseries C\+O\+N\+C\+E\+AL} =8, 
+\\*
+{\bfseries D\+O\+U\+B\+L\+E\+\_\+\+U\+N\+D\+E\+R\+L\+I\+NE} =21, 
+{\bfseries N\+O\+R\+M\+A\+L\+\_\+\+I\+N\+T\+E\+N\+S\+I\+TY} =22, 
+{\bfseries R\+E\+V\+E\+AL} =28
+ \}\hypertarget{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}{}\label{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}
+\begin{DoxyCompactList}\small\item\em The Text\+Style enumeration lists all the valid text styles. Many are only partially supported by most terminal emulators, so don\textquotesingle{}t be surprised if a particular style -- such as D\+O\+U\+B\+L\+E\+\_\+\+U\+N\+D\+E\+R\+L\+I\+NE -- does not show up correctly. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespaceconio_a1a3ebea2e6495877a9ee71144c75753e}{conio\+::goto\+Row\+Col} (const int row, const int col)
+\begin{DoxyCompactList}\small\item\em Positions cursor to the specified row, col location. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_aa0e5fc54c0f3db19c1201e4a322d449c}{conio\+::fg\+Color} (Color c)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the foreground color to the specified color. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a2a5d9994e199d91db69d7274e091d71a}{conio\+::bg\+Color} (Color c)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the foreground color to the specified color. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a5ad1fe72a9301d2206e56cc517b01a32}{conio\+::set\+Text\+Style} (Text\+Style ts)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the text style to the specified Text\+Style. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a0f86b2fbc565f5e6831e75216cf3e708}{conio\+::reset\+All} ()
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to reset all the text attributes to default. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_afc18f30814e14ce8c5bcd15a60aae173}{conio\+::clrscr} ()
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to clear the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \hyperlink{namespaceconio_ab6e72c3f7e8297901e23f6f11333d58d}{conio\+::\+C\+SI} \mbox{[}$\,$\mbox{]} = \{\textquotesingle{}\textbackslash{}033\textquotesingle{}, \textquotesingle{}\mbox{[}\textquotesingle{}, \textquotesingle{}\textbackslash{}0\textquotesingle{}\}\hypertarget{namespaceconio_ab6e72c3f7e8297901e23f6f11333d58d}{}\label{namespaceconio_ab6e72c3f7e8297901e23f6f11333d58d}
+
+\begin{DoxyCompactList}\small\item\em The C\+SI C-\/string is at the start of all the escape code sequences. The C\+SI C-\/string contains the escape code sequence that must be printed first for the various sequences. Output it, then the rest of the codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declarations for the console I/O functions namespace. 
+
+\begin{DoxyAuthor}{Author}
+Stefan Brandle 
+\end{DoxyAuthor}

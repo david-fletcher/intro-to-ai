@@ -1,0 +1,113 @@
+\hypertarget{classHeatMap}{}\section{Heat\+Map Class Reference}
+\label{classHeatMap}\index{Heat\+Map@{Heat\+Map}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classHeatMap_a4d05dd4d96d186b99576a3139c70c102}{get\+Shot} (int \&row\+To\+Shoot, int \&col\+To\+Shoot)
+\begin{DoxyCompactList}\small\item\em Determines the best location to shoot. \end{DoxyCompactList}\item 
+void \hyperlink{classHeatMap_a3b10a4d728c77e5399820f94779bdadd}{initialize\+Heat\+Map} (int size\+Of\+Board)
+\begin{DoxyCompactList}\small\item\em Initializes the heatmap. \end{DoxyCompactList}\item 
+void \hyperlink{classHeatMap_a8a2f4ca868a52cc02515db6607ae844c}{generate\+Probability} (char player\+Board\mbox{[}10\mbox{]}\mbox{[}10\mbox{]})
+\begin{DoxyCompactList}\small\item\em Generates the probability heatmap of a ship being at any location for the given boardstate. \end{DoxyCompactList}\item 
+void \hyperlink{classHeatMap_aafeab5a6d0c316502deef11f2d82fbc4}{add\+Ship} (int ship\+Size)
+\begin{DoxyCompactList}\small\item\em Adds a ship to the ship\+Lengths vector. \end{DoxyCompactList}\item 
+void \hyperlink{classHeatMap_ab5447d4df83bee402e68abb67d136d76}{delete\+Ship} (int ship\+Size)
+\begin{DoxyCompactList}\small\item\em Removes a ship from the ship\+Lengths vector. \end{DoxyCompactList}\item 
+void \hyperlink{classHeatMap_acf289d30dc8dc913caed601720d30afc}{print\+Heat\+Map} ()\hypertarget{classHeatMap_acf289d30dc8dc913caed601720d30afc}{}\label{classHeatMap_acf289d30dc8dc913caed601720d30afc}
+
+\begin{DoxyCompactList}\small\item\em Prints the heatmap (used for debugging purposes). \end{DoxyCompactList}\item 
+void {\bfseries print\+Ship\+Vector} ()\hypertarget{classHeatMap_a16acb67000e14767f58e8612de86569f}{}\label{classHeatMap_a16acb67000e14767f58e8612de86569f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Heat\+Map@{Heat\+Map}!add\+Ship@{add\+Ship}}
+\index{add\+Ship@{add\+Ship}!Heat\+Map@{Heat\+Map}}
+\subsubsection[{\texorpdfstring{add\+Ship(int ship\+Size)}{addShip(int shipSize)}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::add\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{ship\+Size}
+\end{DoxyParamCaption}
+)}\hypertarget{classHeatMap_aafeab5a6d0c316502deef11f2d82fbc4}{}\label{classHeatMap_aafeab5a6d0c316502deef11f2d82fbc4}
+
+
+Adds a ship to the ship\+Lengths vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ship\+Size} & The length of the ship being added. \\
+\hline
+\end{DoxyParams}
+\index{Heat\+Map@{Heat\+Map}!delete\+Ship@{delete\+Ship}}
+\index{delete\+Ship@{delete\+Ship}!Heat\+Map@{Heat\+Map}}
+\subsubsection[{\texorpdfstring{delete\+Ship(int ship\+Size)}{deleteShip(int shipSize)}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::delete\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{ship\+Size}
+\end{DoxyParamCaption}
+)}\hypertarget{classHeatMap_ab5447d4df83bee402e68abb67d136d76}{}\label{classHeatMap_ab5447d4df83bee402e68abb67d136d76}
+
+
+Removes a ship from the ship\+Lengths vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ship\+Size} & The length of the ship being removed. \\
+\hline
+\end{DoxyParams}
+\index{Heat\+Map@{Heat\+Map}!generate\+Probability@{generate\+Probability}}
+\index{generate\+Probability@{generate\+Probability}!Heat\+Map@{Heat\+Map}}
+\subsubsection[{\texorpdfstring{generate\+Probability(char player\+Board[10][10])}{generateProbability(char playerBoard[10][10])}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::generate\+Probability (
+\begin{DoxyParamCaption}
+\item[{char}]{player\+Board\mbox{[}10\mbox{]}\mbox{[}10\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{classHeatMap_a8a2f4ca868a52cc02515db6607ae844c}{}\label{classHeatMap_a8a2f4ca868a52cc02515db6607ae844c}
+
+
+Generates the probability heatmap of a ship being at any location for the given boardstate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Board} & The board being shot at (containing the opponent\textquotesingle{}s ships). \\
+\hline
+\end{DoxyParams}
+\index{Heat\+Map@{Heat\+Map}!get\+Shot@{get\+Shot}}
+\index{get\+Shot@{get\+Shot}!Heat\+Map@{Heat\+Map}}
+\subsubsection[{\texorpdfstring{get\+Shot(int \&row\+To\+Shoot, int \&col\+To\+Shoot)}{getShot(int &rowToShoot, int &colToShoot)}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::get\+Shot (
+\begin{DoxyParamCaption}
+\item[{int \&}]{row\+To\+Shoot, }
+\item[{int \&}]{col\+To\+Shoot}
+\end{DoxyParamCaption}
+)}\hypertarget{classHeatMap_a4d05dd4d96d186b99576a3139c70c102}{}\label{classHeatMap_a4d05dd4d96d186b99576a3139c70c102}
+
+
+Determines the best location to shoot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+To\+Shoot} & The pointer of the optimal row index to shoot at (By\+Ref). \\
+\hline
+{\em col\+To\+Shoot} & The pointer of the optimal column index to shoot at (By\+Ref). \\
+\hline
+\end{DoxyParams}
+\index{Heat\+Map@{Heat\+Map}!initialize\+Heat\+Map@{initialize\+Heat\+Map}}
+\index{initialize\+Heat\+Map@{initialize\+Heat\+Map}!Heat\+Map@{Heat\+Map}}
+\subsubsection[{\texorpdfstring{initialize\+Heat\+Map(int size\+Of\+Board)}{initializeHeatMap(int sizeOfBoard)}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::initialize\+Heat\+Map (
+\begin{DoxyParamCaption}
+\item[{int}]{size\+Of\+Board}
+\end{DoxyParamCaption}
+)}\hypertarget{classHeatMap_a3b10a4d728c77e5399820f94779bdadd}{}\label{classHeatMap_a3b10a4d728c77e5399820f94779bdadd}
+
+
+Initializes the heatmap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size\+Of\+Board} & The specified size of the Battleships board. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Heat\+Map.\+h\item 
+\hyperlink{HeatMap_8cpp}{Heat\+Map.\+cpp}\end{DoxyCompactItemize}

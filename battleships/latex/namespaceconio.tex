@@ -1,0 +1,197 @@
+\hypertarget{namespaceconio}{}\section{conio Namespace Reference}
+\label{namespaceconio}\index{conio@{conio}}
+
+
+The conio namespace is a collection of functions that perform console I/O functions.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{Color} \{ \\*
+{\bfseries B\+L\+A\+CK} =30, 
+{\bfseries R\+ED} =31, 
+{\bfseries G\+R\+E\+EN} =32, 
+{\bfseries Y\+E\+L\+L\+OW} =33, 
+\\*
+{\bfseries B\+L\+UE} =34, 
+{\bfseries M\+A\+G\+E\+N\+TA} =35, 
+{\bfseries C\+Y\+AN} =36, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+G\+R\+AY} =37, 
+\\*
+{\bfseries R\+E\+S\+ET} =39, 
+{\bfseries G\+R\+AY} =90, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+R\+ED} =91, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+G\+R\+E\+EN} =92, 
+\\*
+{\bfseries L\+I\+G\+H\+T\+\_\+\+Y\+E\+L\+L\+OW} =93, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+B\+L\+UE} =94, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+M\+A\+G\+E\+N\+TA} =95, 
+{\bfseries L\+I\+G\+H\+T\+\_\+\+C\+Y\+AN} =96, 
+\\*
+{\bfseries W\+H\+I\+TE} =97
+ \}\hypertarget{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{}\label{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}
+\begin{DoxyCompactList}\small\item\em The Color enumeration lists all the valid colors (foreground and background). \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}{Text\+Style} \{ \\*
+{\bfseries B\+O\+LD} =1, 
+{\bfseries F\+A\+I\+NT} =2, 
+{\bfseries I\+T\+A\+L\+IC} =3, 
+{\bfseries U\+N\+D\+E\+R\+L\+I\+NE} =4, 
+\\*
+{\bfseries S\+L\+O\+W\+\_\+\+B\+L\+I\+NK} =5, 
+{\bfseries R\+A\+P\+I\+D\+\_\+\+B\+L\+I\+NK} =6, 
+{\bfseries N\+E\+G\+A\+T\+I\+V\+E\+\_\+\+I\+M\+A\+GE} =7, 
+{\bfseries C\+O\+N\+C\+E\+AL} =8, 
+\\*
+{\bfseries D\+O\+U\+B\+L\+E\+\_\+\+U\+N\+D\+E\+R\+L\+I\+NE} =21, 
+{\bfseries N\+O\+R\+M\+A\+L\+\_\+\+I\+N\+T\+E\+N\+S\+I\+TY} =22, 
+{\bfseries R\+E\+V\+E\+AL} =28
+ \}\hypertarget{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}{}\label{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}
+\begin{DoxyCompactList}\small\item\em The Text\+Style enumeration lists all the valid text styles. Many are only partially supported by most terminal emulators, so don\textquotesingle{}t be surprised if a particular style -- such as D\+O\+U\+B\+L\+E\+\_\+\+U\+N\+D\+E\+R\+L\+I\+NE -- does not show up correctly. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespaceconio_a1a3ebea2e6495877a9ee71144c75753e}{goto\+Row\+Col} (const int row, const int col)
+\begin{DoxyCompactList}\small\item\em Positions cursor to the specified row, col location. \end{DoxyCompactList}\item 
+string {\bfseries get\+Color\+Sequence} (\hyperlink{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{Color} c, int fg\+Or\+Bg)\hypertarget{namespaceconio_a748465c534fed2f1d38b09ebd09b146c}{}\label{namespaceconio_a748465c534fed2f1d38b09ebd09b146c}
+
+\item 
+string \hyperlink{namespaceconio_aa0e5fc54c0f3db19c1201e4a322d449c}{fg\+Color} (\hyperlink{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{Color} c)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the foreground color to the specified color. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a2a5d9994e199d91db69d7274e091d71a}{bg\+Color} (\hyperlink{namespaceconio_a5580b879f58716cb8abe8eb7ecb789eb}{Color} c)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the foreground color to the specified color. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a5ad1fe72a9301d2206e56cc517b01a32}{set\+Text\+Style} (\hyperlink{namespaceconio_a4c720b3477d66baeb5a8c8c60b9d2002}{Text\+Style} ts)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the text style to the specified Text\+Style. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a0f86b2fbc565f5e6831e75216cf3e708}{reset\+All} ()
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to reset all the text attributes to default. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_afc18f30814e14ce8c5bcd15a60aae173}{clrscr} ()
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to clear the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int {\bfseries Foreground} = 1\hypertarget{namespaceconio_a4ae886d3c2f997a19540d3f9b134c197}{}\label{namespaceconio_a4ae886d3c2f997a19540d3f9b134c197}
+
+\item 
+const int {\bfseries Background} = 2\hypertarget{namespaceconio_a1a360e79f73ab621070f8bfb1ef41a48}{}\label{namespaceconio_a1a360e79f73ab621070f8bfb1ef41a48}
+
+\item 
+const char \hyperlink{namespaceconio_ab6e72c3f7e8297901e23f6f11333d58d}{C\+SI} \mbox{[}$\,$\mbox{]} = \{\textquotesingle{}\textbackslash{}033\textquotesingle{}, \textquotesingle{}\mbox{[}\textquotesingle{}, \textquotesingle{}\textbackslash{}0\textquotesingle{}\}\hypertarget{namespaceconio_ab6e72c3f7e8297901e23f6f11333d58d}{}\label{namespaceconio_ab6e72c3f7e8297901e23f6f11333d58d}
+
+\begin{DoxyCompactList}\small\item\em The C\+SI C-\/string is at the start of all the escape code sequences. The C\+SI C-\/string contains the escape code sequence that must be printed first for the various sequences. Output it, then the rest of the codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The conio namespace is a collection of functions that perform console I/O functions. 
+
+\subsection{Function Documentation}
+\index{conio@{conio}!bg\+Color@{bg\+Color}}
+\index{bg\+Color@{bg\+Color}!conio@{conio}}
+\subsubsection[{\texorpdfstring{bg\+Color(\+Color c)}{bgColor(Color c)}}]{\setlength{\rightskip}{0pt plus 5cm}string conio\+::bg\+Color (
+\begin{DoxyParamCaption}
+\item[{{\bf Color}}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceconio_a2a5d9994e199d91db69d7274e091d71a}{}\label{namespaceconio_a2a5d9994e199d91db69d7274e091d71a}
+
+
+Returns a string that contains the escape sequence to set the foreground color to the specified color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The Color valoue to use for the text background color. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the entire escape sequence to be output to the terminal to set the background color. 
+\end{DoxyReturn}
+\index{conio@{conio}!clrscr@{clrscr}}
+\index{clrscr@{clrscr}!conio@{conio}}
+\subsubsection[{\texorpdfstring{clrscr()}{clrscr()}}]{\setlength{\rightskip}{0pt plus 5cm}string conio\+::clrscr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceconio_afc18f30814e14ce8c5bcd15a60aae173}{}\label{namespaceconio_afc18f30814e14ce8c5bcd15a60aae173}
+
+
+Returns a string that contains the escape sequence to clear the screen. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the entire escape sequence to be output to the terminal to clear the screen. 
+\end{DoxyReturn}
+\index{conio@{conio}!fg\+Color@{fg\+Color}}
+\index{fg\+Color@{fg\+Color}!conio@{conio}}
+\subsubsection[{\texorpdfstring{fg\+Color(\+Color c)}{fgColor(Color c)}}]{\setlength{\rightskip}{0pt plus 5cm}string conio\+::fg\+Color (
+\begin{DoxyParamCaption}
+\item[{{\bf Color}}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceconio_aa0e5fc54c0f3db19c1201e4a322d449c}{}\label{namespaceconio_aa0e5fc54c0f3db19c1201e4a322d449c}
+
+
+Returns a string that contains the escape sequence to set the foreground color to the specified color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The Color valoue to use for the text foreground color. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the entire escape sequence to be output to the terminal to set the foreground color. 
+\end{DoxyReturn}
+\index{conio@{conio}!goto\+Row\+Col@{goto\+Row\+Col}}
+\index{goto\+Row\+Col@{goto\+Row\+Col}!conio@{conio}}
+\subsubsection[{\texorpdfstring{goto\+Row\+Col(const int row, const int col)}{gotoRowCol(const int row, const int col)}}]{\setlength{\rightskip}{0pt plus 5cm}string conio\+::goto\+Row\+Col (
+\begin{DoxyParamCaption}
+\item[{const int}]{row, }
+\item[{const int}]{col}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceconio_a1a3ebea2e6495877a9ee71144c75753e}{}\label{namespaceconio_a1a3ebea2e6495877a9ee71144c75753e}
+
+
+Positions cursor to the specified row, col location. 
+
+Gotoxy will position the cursor at the specified row,col location. The upper left corner has the coordinates 1,1. Note\+: this is row,col, not x,y (col,row) as is often done.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row coordinate (1-\/based). \\
+\hline
+{\em col} & The column coordinate (1-\/based). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the escape sequence to send to the screen. goto\+Row\+Col = C\+SI r;c 
+\end{DoxyReturn}
+\index{conio@{conio}!reset\+All@{reset\+All}}
+\index{reset\+All@{reset\+All}!conio@{conio}}
+\subsubsection[{\texorpdfstring{reset\+All()}{resetAll()}}]{\setlength{\rightskip}{0pt plus 5cm}string conio\+::reset\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceconio_a0f86b2fbc565f5e6831e75216cf3e708}{}\label{namespaceconio_a0f86b2fbc565f5e6831e75216cf3e708}
+
+
+Returns a string that contains the escape sequence to reset all the text attributes to default. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the entire escape sequence to be output to the terminal to reset text output to the default. 
+\end{DoxyReturn}
+\index{conio@{conio}!set\+Text\+Style@{set\+Text\+Style}}
+\index{set\+Text\+Style@{set\+Text\+Style}!conio@{conio}}
+\subsubsection[{\texorpdfstring{set\+Text\+Style(\+Text\+Style ts)}{setTextStyle(TextStyle ts)}}]{\setlength{\rightskip}{0pt plus 5cm}string conio\+::set\+Text\+Style (
+\begin{DoxyParamCaption}
+\item[{{\bf Text\+Style}}]{ts}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceconio_a5ad1fe72a9301d2206e56cc517b01a32}{}\label{namespaceconio_a5ad1fe72a9301d2206e56cc517b01a32}
+
+
+Returns a string that contains the escape sequence to set the text style to the specified Text\+Style. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts} & The Text\+Style valoue to use for the text style. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the entire escape sequence to be output to the terminal to set the text style. 
+\end{DoxyReturn}

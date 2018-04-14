@@ -1,0 +1,124 @@
+\hypertarget{classPlayerV2}{}\section{Player\+V2 Class Reference}
+\label{classPlayerV2}\index{Player\+V2@{Player\+V2}}
+
+
+Inheritance diagram for Player\+V2\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPlayerV2__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPlayerV2_a22416fa1e23e66616a9ef488872340d2}{Player\+V2} (int board\+Size)
+\begin{DoxyCompactList}\small\item\em Constructor\+: initializes any game-\/long data structures. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classPlayerV2_afb845a64b9ee9840b1512b1ccd69489a}{new\+Round} ()=0
+\begin{DoxyCompactList}\small\item\em Tells the player to prepare for a new round in a game against the same opponent. \end{DoxyCompactList}\item 
+virtual \hyperlink{classMessage}{Message} \hyperlink{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}{get\+Move} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the player\textquotesingle{}s move choice. This is then returned to the caller. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}{update} (\hyperlink{classMessage}{Message} msg)=0
+\begin{DoxyCompactList}\small\item\em Informs the player of the results of move\textquotesingle{}s by player or opponent. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. \end{DoxyCompactList}\item 
+virtual \hyperlink{classMessage}{Message} \hyperlink{classPlayerV2_aebf171921d494578b592422210621a9a}{place\+Ship} (int length)=0
+\begin{DoxyCompactList}\small\item\em Used to inform the game controller of where the player wishes to place a ship. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries board\+Size}\hypertarget{classPlayerV2_a660fa4db4014af5996f64d2531d17c25}{}\label{classPlayerV2_a660fa4db4014af5996f64d2531d17c25}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Player\+V2@{Player\+V2}!Player\+V2@{Player\+V2}}
+\index{Player\+V2@{Player\+V2}!Player\+V2@{Player\+V2}}
+\subsubsection[{\texorpdfstring{Player\+V2(int board\+Size)}{PlayerV2(int boardSize)}}]{\setlength{\rightskip}{0pt plus 5cm}Player\+V2\+::\+Player\+V2 (
+\begin{DoxyParamCaption}
+\item[{int}]{board\+Size}
+\end{DoxyParamCaption}
+)}\hypertarget{classPlayerV2_a22416fa1e23e66616a9ef488872340d2}{}\label{classPlayerV2_a22416fa1e23e66616a9ef488872340d2}
+
+
+Constructor\+: initializes any game-\/long data structures. 
+
+The player should reinitialize any inter-\/round data structures that will be used for the entire game. I.\+e., any intra-\/round learning data structures should be initialized in the here, while inter-\/round data structures need to be initialized in \hyperlink{classPlayerV2_afb845a64b9ee9840b1512b1ccd69489a}{new\+Round()}. 
+
+\subsection{Member Function Documentation}
+\index{Player\+V2@{Player\+V2}!get\+Move@{get\+Move}}
+\index{get\+Move@{get\+Move}!Player\+V2@{Player\+V2}}
+\subsubsection[{\texorpdfstring{get\+Move()=0}{getMove()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Message} Player\+V2\+::get\+Move (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}{}\label{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}
+
+
+Gets the player\textquotesingle{}s move choice. This is then returned to the caller. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} move This is a pure virtual function. The Player class declares, but does not define it. That allows a class to force all derived classes to implement the functionality. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classCheddar_a603c573f2736063af3dd370886250c83}{Cheddar}, \hyperlink{classDumbPlayerV2_a1e28ee8b3b05ce9188a276028ef9b424}{Dumb\+Player\+V2}, \hyperlink{classCleanPlayerV2_a36a45ec4f24abcc4e19a6895d4895eeb}{Clean\+Player\+V2}, \hyperlink{classSemiSmartPlayerV2_a60e4c3dd7caee6d43df20805b714ed83}{Semi\+Smart\+Player\+V2}, \hyperlink{classGamblerPlayerV2_a87884e743f5f88bf48372c7e24f01582}{Gambler\+Player\+V2}, and \hyperlink{classLearningGambler_a4f3fe17dbd2368a8561117442bc1cc3e}{Learning\+Gambler}.
+
+\index{Player\+V2@{Player\+V2}!new\+Round@{new\+Round}}
+\index{new\+Round@{new\+Round}!Player\+V2@{Player\+V2}}
+\subsubsection[{\texorpdfstring{new\+Round()=0}{newRound()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Player\+V2\+::new\+Round (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classPlayerV2_afb845a64b9ee9840b1512b1ccd69489a}{}\label{classPlayerV2_afb845a64b9ee9840b1512b1ccd69489a}
+
+
+Tells the player to prepare for a new round in a game against the same opponent. 
+
+The player should reinitialize any round-\/specific data structures. This is not the same as the constructor, which must initialize all data structures that will last the duration of the entire game. I.\+e., any inter-\/round learning data structures should be initialized in the constructor and not here, while intra-\/round data structures need to be initialized here. 
+
+Implemented in \hyperlink{classCheddar_a3ebbe79cc92ee770c5868eeba6a6c940}{Cheddar}, \hyperlink{classDumbPlayerV2_ae7c2704abc026cf6ca36afbd7bce5e23}{Dumb\+Player\+V2}, \hyperlink{classCleanPlayerV2_ae672fa4e3b50874b55fa85231c9cfd16}{Clean\+Player\+V2}, \hyperlink{classSemiSmartPlayerV2_ad1e49a603829e62252c9e4885c6e57f9}{Semi\+Smart\+Player\+V2}, \hyperlink{classGamblerPlayerV2_a349eb04948fd19a3e91fa5b2b427aac5}{Gambler\+Player\+V2}, and \hyperlink{classLearningGambler_ac1b46d154d2dfa2aba5f1dff5e8c37e0}{Learning\+Gambler}.
+
+\index{Player\+V2@{Player\+V2}!place\+Ship@{place\+Ship}}
+\index{place\+Ship@{place\+Ship}!Player\+V2@{Player\+V2}}
+\subsubsection[{\texorpdfstring{place\+Ship(int length)=0}{placeShip(int length)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Message} Player\+V2\+::place\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classPlayerV2_aebf171921d494578b592422210621a9a}{}\label{classPlayerV2_aebf171921d494578b592422210621a9a}
+
+
+Used to inform the game controller of where the player wishes to place a ship. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} Indicates the row, col, and direction information for the ship to be placed. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classCheddar_a472aeeafaedc457450b4d51f185aacae}{Cheddar}, \hyperlink{classDumbPlayerV2_a49d3990b3423204c1a367cf71bdb9605}{Dumb\+Player\+V2}, \hyperlink{classCleanPlayerV2_ac18f0c9b222f62132ae8be605ff67022}{Clean\+Player\+V2}, \hyperlink{classSemiSmartPlayerV2_a42769c809458a33f67751ba9dd566e23}{Semi\+Smart\+Player\+V2}, \hyperlink{classGamblerPlayerV2_aa0031a909f0cf326e7ec3ffcec20c88e}{Gambler\+Player\+V2}, and \hyperlink{classLearningGambler_aaa1f666a184cb47ef8d7d6870654d5d1}{Learning\+Gambler}.
+
+\index{Player\+V2@{Player\+V2}!update@{update}}
+\index{update@{update}!Player\+V2@{Player\+V2}}
+\subsubsection[{\texorpdfstring{update(\+Message msg)=0}{update(Message msg)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Player\+V2\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}{}\label{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}
+
+
+Informs the player of the results of move\textquotesingle{}s by player or opponent. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message will have the shot coordinates (row, col) and the shot result available via the message\+Type. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classCheddar_a2cf8926ec6b1faf842eacfe579c8d080}{Cheddar}, \hyperlink{classDumbPlayerV2_a9e91bb555844a7a1ec60edfffcb1be76}{Dumb\+Player\+V2}, \hyperlink{classCleanPlayerV2_ae3c61b1d882a6edb22446cb64e00560f}{Clean\+Player\+V2}, \hyperlink{classSemiSmartPlayerV2_a000b503d95d671bb819645b61e7fbc84}{Semi\+Smart\+Player\+V2}, \hyperlink{classGamblerPlayerV2_a2d46df35dd7fc5ded8502040b15f9209}{Gambler\+Player\+V2}, and \hyperlink{classLearningGambler_a40f003de6770045d83167434ffd4d407}{Learning\+Gambler}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Player\+V2.\+h\item 
+Player\+V2.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,135 @@
+\hypertarget{classCheddar}{}\section{Cheddar Class Reference}
+\label{classCheddar}\index{Cheddar@{Cheddar}}
+
+
+Inheritance diagram for Cheddar\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{classCheddar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Cheddar\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{classCheddar__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCheddar_a648677de898762515334e2c146ae2b74}{Cheddar} (int board\+Size)
+\begin{DoxyCompactList}\small\item\em Constructor that initializes any inter-\/round data structures. \end{DoxyCompactList}\item 
+\hyperlink{classCheddar_a90b08101bb3e723f9391000afa65cf95}{$\sim$\+Cheddar} ()\hypertarget{classCheddar_a90b08101bb3e723f9391000afa65cf95}{}\label{classCheddar_a90b08101bb3e723f9391000afa65cf95}
+
+\begin{DoxyCompactList}\small\item\em Destructor placeholder. If your code does anything that requires cleanup when the object is destroyed, do it here in the destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classCheddar_a3ebbe79cc92ee770c5868eeba6a6c940}{new\+Round} ()\hypertarget{classCheddar_a3ebbe79cc92ee770c5868eeba6a6c940}{}\label{classCheddar_a3ebbe79cc92ee770c5868eeba6a6c940}
+
+\begin{DoxyCompactList}\small\item\em Performs any inter-\/round initialization. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classCheddar_a472aeeafaedc457450b4d51f185aacae}{place\+Ship} (int length)
+\begin{DoxyCompactList}\small\item\em Gets the AI\textquotesingle{}s ship placement choice. This is then returned to the caller. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classCheddar_a603c573f2736063af3dd370886250c83}{get\+Move} ()
+\begin{DoxyCompactList}\small\item\em Specifies the AI\textquotesingle{}s shot choice and returns the information to the caller. \end{DoxyCompactList}\item 
+void \hyperlink{classCheddar_a2cf8926ec6b1faf842eacfe579c8d080}{update} (\hyperlink{classMessage}{Message} msg)
+\begin{DoxyCompactList}\small\item\em Updates the AI with the results of its shots and where the opponent is shooting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Cheddar@{Cheddar}!Cheddar@{Cheddar}}
+\index{Cheddar@{Cheddar}!Cheddar@{Cheddar}}
+\subsubsection[{\texorpdfstring{Cheddar(int board\+Size)}{Cheddar(int boardSize)}}]{\setlength{\rightskip}{0pt plus 5cm}Cheddar\+::\+Cheddar (
+\begin{DoxyParamCaption}
+\item[{int}]{board\+Sz}
+\end{DoxyParamCaption}
+)}\hypertarget{classCheddar_a648677de898762515334e2c146ae2b74}{}\label{classCheddar_a648677de898762515334e2c146ae2b74}
+
+
+Constructor that initializes any inter-\/round data structures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board\+Size} & Indication of the size of the board that is in use.\\
+\hline
+\end{DoxyParams}
+The constructor runs when the AI is instantiated (the object gets created) and is responsible for initializing everything that needs to be initialized before any of the rounds happen. The constructor does not get called before rounds; \hyperlink{classCheddar_a3ebbe79cc92ee770c5868eeba6a6c940}{new\+Round()} gets called before every round. 
+
+\subsection{Member Function Documentation}
+\index{Cheddar@{Cheddar}!get\+Move@{get\+Move}}
+\index{get\+Move@{get\+Move}!Cheddar@{Cheddar}}
+\subsubsection[{\texorpdfstring{get\+Move()}{getMove()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Cheddar\+::get\+Move (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classCheddar_a603c573f2736063af3dd370886250c83}{}\label{classCheddar_a603c573f2736063af3dd370886250c83}
+
+
+Specifies the AI\textquotesingle{}s shot choice and returns the information to the caller. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} The most important parts of the returned message are the row and column values.
+\end{DoxyReturn}
+See the \hyperlink{classMessage}{Message} class documentation for more information on the \hyperlink{classMessage}{Message} constructor. 
+
+Implements \hyperlink{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}{Player\+V2}.
+
+\index{Cheddar@{Cheddar}!place\+Ship@{place\+Ship}}
+\index{place\+Ship@{place\+Ship}!Cheddar@{Cheddar}}
+\subsubsection[{\texorpdfstring{place\+Ship(int length)}{placeShip(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Cheddar\+::place\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classCheddar_a472aeeafaedc457450b4d51f185aacae}{}\label{classCheddar_a472aeeafaedc457450b4d51f185aacae}
+
+
+Gets the AI\textquotesingle{}s ship placement choice. This is then returned to the caller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The length of the ship to be placed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} The most important parts of the returned message are the direction, row, and column values.
+\end{DoxyReturn}
+The parameters returned via the message are\+:
+\begin{DoxyEnumerate}
+\item the operation\+: must be P\+L\+A\+C\+E\+\_\+\+S\+H\+IP
+\item ship top row value
+\item ship top col value
+\item a string for the ship name
+\item direction Horizontal/\+Vertical (see \hyperlink{defines_8h_source}{defines.\+h})
+\item ship length (should match the length passed to place\+Ship) 
+\end{DoxyEnumerate}
+
+Implements \hyperlink{classPlayerV2_aebf171921d494578b592422210621a9a}{Player\+V2}.
+
+\index{Cheddar@{Cheddar}!update@{update}}
+\index{update@{update}!Cheddar@{Cheddar}}
+\subsubsection[{\texorpdfstring{update(\+Message msg)}{update(Message msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Cheddar\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classCheddar_a2cf8926ec6b1faf842eacfe579c8d080}{}\label{classCheddar_a2cf8926ec6b1faf842eacfe579c8d080}
+
+
+Updates the AI with the results of its shots and where the opponent is shooting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \hyperlink{classMessage}{Message} specifying what happened + row/col as appropriate. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}{Player\+V2}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Cheddar.\+h\item 
+\hyperlink{Cheddar_8cpp}{Cheddar.\+cpp}\end{DoxyCompactItemize}

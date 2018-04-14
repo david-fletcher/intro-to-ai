@@ -1,0 +1,80 @@
+\hypertarget{classShipMap}{}\section{Ship\+Map Class Reference}
+\label{classShipMap}\index{Ship\+Map@{Ship\+Map}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classShipMap_ac7f0f6945a93c1f8f33484795d71dbee}{initialize\+Ship\+Map} (int board\+Sz)
+\begin{DoxyCompactList}\small\item\em Initializes the ship map. \end{DoxyCompactList}\item 
+void \hyperlink{classShipMap_a4c701ef6bb9c0c64a13d2f11b0a23bf4}{convert\+To\+Ship\+Map} (char board\mbox{[}10\mbox{]}\mbox{[}10\mbox{]})
+\begin{DoxyCompactList}\small\item\em Subtracts one from a map coordinate if it was shot at and adds three if it wasn\textquotesingle{}t shot at. \end{DoxyCompactList}\item 
+void \hyperlink{classShipMap_aa554bb66e126e428c244c4a750b9cb73}{best\+Ship\+Location} (int ship\+Size, int \&row, int \&col, int \&direction)
+\begin{DoxyCompactList}\small\item\em Gives the row, column, and direction of the best location to place a ship. \end{DoxyCompactList}\item 
+void \hyperlink{classShipMap_a428edd83a927615914b42e168fd65f53}{reset\+Cur\+Ship\+Placement} ()\hypertarget{classShipMap_a428edd83a927615914b42e168fd65f53}{}\label{classShipMap_a428edd83a927615914b42e168fd65f53}
+
+\begin{DoxyCompactList}\small\item\em Resets the current ship placement to map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Ship\+Map@{Ship\+Map}!best\+Ship\+Location@{best\+Ship\+Location}}
+\index{best\+Ship\+Location@{best\+Ship\+Location}!Ship\+Map@{Ship\+Map}}
+\subsubsection[{\texorpdfstring{best\+Ship\+Location(int ship\+Size, int \&row, int \&col, int \&direction)}{bestShipLocation(int shipSize, int &row, int &col, int &direction)}}]{\setlength{\rightskip}{0pt plus 5cm}void Ship\+Map\+::best\+Ship\+Location (
+\begin{DoxyParamCaption}
+\item[{int}]{ship\+Size, }
+\item[{int \&}]{row, }
+\item[{int \&}]{col, }
+\item[{int \&}]{direction}
+\end{DoxyParamCaption}
+)}\hypertarget{classShipMap_aa554bb66e126e428c244c4a750b9cb73}{}\label{classShipMap_aa554bb66e126e428c244c4a750b9cb73}
+
+
+Gives the row, column, and direction of the best location to place a ship. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ship\+Size} & The length of the ship. \\
+\hline
+{\em row} & The pointer to the row index at which a ship should be placed (By\+Ref). \\
+\hline
+{\em col} & The pointer to the col index at which a ship should be placed (By\+Ref). \\
+\hline
+{\em direction} & The pointer to the orientation at which a ship should be placed (0 = horizontal, 1 = vertical) (By\+Ref). \\
+\hline
+\end{DoxyParams}
+\index{Ship\+Map@{Ship\+Map}!convert\+To\+Ship\+Map@{convert\+To\+Ship\+Map}}
+\index{convert\+To\+Ship\+Map@{convert\+To\+Ship\+Map}!Ship\+Map@{Ship\+Map}}
+\subsubsection[{\texorpdfstring{convert\+To\+Ship\+Map(char board[10][10])}{convertToShipMap(char board[10][10])}}]{\setlength{\rightskip}{0pt plus 5cm}void Ship\+Map\+::convert\+To\+Ship\+Map (
+\begin{DoxyParamCaption}
+\item[{char}]{board\mbox{[}10\mbox{]}\mbox{[}10\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{classShipMap_a4c701ef6bb9c0c64a13d2f11b0a23bf4}{}\label{classShipMap_a4c701ef6bb9c0c64a13d2f11b0a23bf4}
+
+
+Subtracts one from a map coordinate if it was shot at and adds three if it wasn\textquotesingle{}t shot at. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & The board that kept track of where the opponent shot last game. \\
+\hline
+\end{DoxyParams}
+\index{Ship\+Map@{Ship\+Map}!initialize\+Ship\+Map@{initialize\+Ship\+Map}}
+\index{initialize\+Ship\+Map@{initialize\+Ship\+Map}!Ship\+Map@{Ship\+Map}}
+\subsubsection[{\texorpdfstring{initialize\+Ship\+Map(int board\+Sz)}{initializeShipMap(int boardSz)}}]{\setlength{\rightskip}{0pt plus 5cm}void Ship\+Map\+::initialize\+Ship\+Map (
+\begin{DoxyParamCaption}
+\item[{int}]{board\+Sz}
+\end{DoxyParamCaption}
+)}\hypertarget{classShipMap_ac7f0f6945a93c1f8f33484795d71dbee}{}\label{classShipMap_ac7f0f6945a93c1f8f33484795d71dbee}
+
+
+Initializes the ship map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board\+Sz} & The size of the Battleships board. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ship\+Map.\+h\item 
+\hyperlink{ShipMap_8cpp}{Ship\+Map.\+cpp}\end{DoxyCompactItemize}

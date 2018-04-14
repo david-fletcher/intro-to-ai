@@ -1,0 +1,64 @@
+\hypertarget{conio_8cpp}{}\section{conio.\+cpp File Reference}
+\label{conio_8cpp}\index{conio.\+cpp@{conio.\+cpp}}
+
+
+conio implements a partial clone of Borland\textquotesingle{}s console I/O.  
+
+
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include \char`\"{}conio.\+h\char`\"{}}\\*
+Include dependency graph for conio.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=283pt]{conio_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceconio}{conio}
+\begin{DoxyCompactList}\small\item\em The conio namespace is a collection of functions that perform console I/O functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespaceconio_a1a3ebea2e6495877a9ee71144c75753e}{conio\+::goto\+Row\+Col} (const int row, const int col)
+\begin{DoxyCompactList}\small\item\em Positions cursor to the specified row, col location. \end{DoxyCompactList}\item 
+string {\bfseries conio\+::get\+Color\+Sequence} (Color c, int fg\+Or\+Bg)\hypertarget{namespaceconio_a748465c534fed2f1d38b09ebd09b146c}{}\label{namespaceconio_a748465c534fed2f1d38b09ebd09b146c}
+
+\item 
+string \hyperlink{namespaceconio_aa0e5fc54c0f3db19c1201e4a322d449c}{conio\+::fg\+Color} (Color c)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the foreground color to the specified color. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a2a5d9994e199d91db69d7274e091d71a}{conio\+::bg\+Color} (Color c)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the foreground color to the specified color. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a5ad1fe72a9301d2206e56cc517b01a32}{conio\+::set\+Text\+Style} (Text\+Style ts)
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to set the text style to the specified Text\+Style. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_a0f86b2fbc565f5e6831e75216cf3e708}{conio\+::reset\+All} ()
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to reset all the text attributes to default. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceconio_afc18f30814e14ce8c5bcd15a60aae173}{conio\+::clrscr} ()
+\begin{DoxyCompactList}\small\item\em Returns a string that contains the escape sequence to clear the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int {\bfseries conio\+::\+Foreground} = 1\hypertarget{namespaceconio_a4ae886d3c2f997a19540d3f9b134c197}{}\label{namespaceconio_a4ae886d3c2f997a19540d3f9b134c197}
+
+\item 
+const int {\bfseries conio\+::\+Background} = 2\hypertarget{namespaceconio_a1a360e79f73ab621070f8bfb1ef41a48}{}\label{namespaceconio_a1a360e79f73ab621070f8bfb1ef41a48}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+conio implements a partial clone of Borland\textquotesingle{}s console I/O. 
+
+\begin{DoxyAuthor}{Author}
+Stefan Brandle 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2008 Conio implements the text functionality of Borland\textquotesingle{}s console I/O. That includes cursor positioning, setting foreground/background colors, setting text styles, resetting text attributes, and clearing the screen.
+\end{DoxyDate}
+Definition/implementation of the console I/O functions Reference\+: \href{http://en.wikipedia.org/wiki/ANSI_escape_code}{\tt http\+://en.\+wikipedia.\+org/wiki/\+A\+N\+S\+I\+\_\+escape\+\_\+code} 

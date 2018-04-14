@@ -1,0 +1,8 @@
+<map id="PlayerV2" name="PlayerV2">
+<area shape="rect" id="node2" href="$classCheddar.html" title="Cheddar" alt="" coords="5,80,81,107"/>
+<area shape="rect" id="node3" href="$classCleanPlayerV2.html" title="CleanPlayerV2" alt="" coords="106,80,221,107"/>
+<area shape="rect" id="node4" href="$classDumbPlayerV2.html" title="DumbPlayerV2" alt="" coords="245,80,362,107"/>
+<area shape="rect" id="node5" href="$classGamblerPlayerV2.html" title="GamblerPlayerV2" alt="" coords="386,80,519,107"/>
+<area shape="rect" id="node6" href="$classLearningGambler.html" title="LearningGambler" alt="" coords="544,80,676,107"/>
+<area shape="rect" id="node7" href="$classSemiSmartPlayerV2.html" title="SemiSmartPlayerV2" alt="" coords="700,80,851,107"/>
+</map>

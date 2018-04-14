@@ -1,0 +1,114 @@
+\hypertarget{classSemiSmartPlayerV2}{}\section{Semi\+Smart\+Player\+V2 Class Reference}
+\label{classSemiSmartPlayerV2}\index{Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}}
+
+
+Inheritance diagram for Semi\+Smart\+Player\+V2\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classSemiSmartPlayerV2__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Semi\+Smart\+Player\+V2\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classSemiSmartPlayerV2__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Semi\+Smart\+Player\+V2} (int board\+Size)\hypertarget{classSemiSmartPlayerV2_a5d3a68fcf855737613f2e30dd53aad0c}{}\label{classSemiSmartPlayerV2_a5d3a68fcf855737613f2e30dd53aad0c}
+
+\item 
+void \hyperlink{classSemiSmartPlayerV2_ad1e49a603829e62252c9e4885c6e57f9}{new\+Round} ()
+\begin{DoxyCompactList}\small\item\em Tells the player to prepare for a new round in a game against the same opponent. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classSemiSmartPlayerV2_a42769c809458a33f67751ba9dd566e23}{place\+Ship} (int length)
+\begin{DoxyCompactList}\small\item\em Used to inform the game controller of where the player wishes to place a ship. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. \end{DoxyCompactList}\item 
+\hyperlink{classMessage}{Message} \hyperlink{classSemiSmartPlayerV2_a60e4c3dd7caee6d43df20805b714ed83}{get\+Move} ()
+\begin{DoxyCompactList}\small\item\em Gets the player\textquotesingle{}s move choice. This is then returned to the caller. \end{DoxyCompactList}\item 
+void \hyperlink{classSemiSmartPlayerV2_a000b503d95d671bb819645b61e7fbc84}{update} (\hyperlink{classMessage}{Message} msg)
+\begin{DoxyCompactList}\small\item\em Informs the player of the results of move\textquotesingle{}s by player or opponent. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}!get\+Move@{get\+Move}}
+\index{get\+Move@{get\+Move}!Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}}
+\subsubsection[{\texorpdfstring{get\+Move()}{getMove()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Semi\+Smart\+Player\+V2\+::get\+Move (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classSemiSmartPlayerV2_a60e4c3dd7caee6d43df20805b714ed83}{}\label{classSemiSmartPlayerV2_a60e4c3dd7caee6d43df20805b714ed83}
+
+
+Gets the player\textquotesingle{}s move choice. This is then returned to the caller. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} move This is a pure virtual function. The Player class declares, but does not define it. That allows a class to force all derived classes to implement the functionality. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classPlayerV2_a8ef82d33acbfd417bb065bb7e01961cc}{Player\+V2}.
+
+\index{Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}!new\+Round@{new\+Round}}
+\index{new\+Round@{new\+Round}!Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}}
+\subsubsection[{\texorpdfstring{new\+Round()}{newRound()}}]{\setlength{\rightskip}{0pt plus 5cm}void Semi\+Smart\+Player\+V2\+::new\+Round (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classSemiSmartPlayerV2_ad1e49a603829e62252c9e4885c6e57f9}{}\label{classSemiSmartPlayerV2_ad1e49a603829e62252c9e4885c6e57f9}
+
+
+Tells the player to prepare for a new round in a game against the same opponent. 
+
+The player should reinitialize any round-\/specific data structures. This is not the same as the constructor, which must initialize all data structures that will last the duration of the entire game. I.\+e., any inter-\/round learning data structures should be initialized in the constructor and not here, while intra-\/round data structures need to be initialized here. 
+
+Implements \hyperlink{classPlayerV2_afb845a64b9ee9840b1512b1ccd69489a}{Player\+V2}.
+
+\index{Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}!place\+Ship@{place\+Ship}}
+\index{place\+Ship@{place\+Ship}!Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}}
+\subsubsection[{\texorpdfstring{place\+Ship(int length)}{placeShip(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} Semi\+Smart\+Player\+V2\+::place\+Ship (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classSemiSmartPlayerV2_a42769c809458a33f67751ba9dd566e23}{}\label{classSemiSmartPlayerV2_a42769c809458a33f67751ba9dd566e23}
+
+
+Used to inform the game controller of where the player wishes to place a ship. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMessage}{Message} Indicates the row, col, and direction information for the ship to be placed. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classPlayerV2_aebf171921d494578b592422210621a9a}{Player\+V2}.
+
+\index{Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}!update@{update}}
+\index{update@{update}!Semi\+Smart\+Player\+V2@{Semi\+Smart\+Player\+V2}}
+\subsubsection[{\texorpdfstring{update(\+Message msg)}{update(Message msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Semi\+Smart\+Player\+V2\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classSemiSmartPlayerV2_a000b503d95d671bb819645b61e7fbc84}{}\label{classSemiSmartPlayerV2_a000b503d95d671bb819645b61e7fbc84}
+
+
+Informs the player of the results of move\textquotesingle{}s by player or opponent. The player updates its internal representation of the opponent\textquotesingle{}s board to reflect the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message will have the shot coordinates (row, col) and the shot result available via the message\+Type. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classPlayerV2_a8d87312a1ce2756e25bb6e6438e8673c}{Player\+V2}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Semi\+Smart\+Player\+V2.\+h\end{DoxyCompactItemize}
