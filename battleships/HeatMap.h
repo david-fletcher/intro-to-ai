@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "defines.h"
 
 using namespace std;
 
@@ -10,16 +11,19 @@ class HeatMap {
 	public:
 		HeatMap();
 		~HeatMap() {};
-		void GetShot(int& rowToShoot, int& colToShoot);
+		void getShot(int& rowToShoot, int& colToShoot);
 		void initializeHeatMap(int sizeOfBoard);
-		void generateProbability(int playerBoard[10][10]);
+		void generateProbability(char playerBoard[10][10]);
 		void addShip(int shipSize);
+		void deleteShip(int shipSize);
 		void printHeatMap();
+		void printShipVector();
 	private:
 		int map[10][10];
 		int basicProbabilityMap[10][10];
 		int boardSize;
-		vector<int> shipLengths;		
+		vector<int> shipLengths;
+		void resetHeatMap();
 };
 
 #endif

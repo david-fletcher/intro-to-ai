@@ -32,6 +32,7 @@ Cheddar::Cheddar( int boardSz ) :PlayerV2(boardSz)
 	boardSize = boardSz;
 	// Could do any initialization of inter-round data structures here.
 	heatMap.initializeHeatMap(boardSz);
+	shipMap.initializeShipMap(boardSz);
 }
 
 /**
@@ -46,12 +47,13 @@ Cheddar::~Cheddar( ) {}
  */
 void Cheddar::initializeBoard() {
     for(int row=0; row<boardSize; row++) {
-		for(int col=0; col<boardSize; col++) {
+		for(int col=0; col<boardSize; col++) 
+		{
+			this->opponentShots[row][col] = WATER;
 			this->board[row][col] = WATER;
 			this->cheddarBoard[row][col] = WATER;
 		}
     }
-
 }
 
 
@@ -64,16 +66,14 @@ void Cheddar::initializeBoard() {
  * Message constructor.
  */
 Message Cheddar::getMove() {
+	if(killSize != 0){
+		heatMap.deleteShip(killSize);
+		killSize = 0;
+	}
 	if(shotmode == SEEK) {
-		lastCol += 3;
-		if( lastCol >= boardSize ) {
-			lastCol = 0 + (lastRow % 3);
-			lastRow++;
-		}
-		if( lastRow >= boardSize ) {
-			lastCol = 0;
-			lastRow = 0;
-		}
+		heatMap.generateProbability(board);
+		heatMap.getShot(lastRow, lastCol);
+		
 		if(isValidMove(lastRow, lastCol)){
 			Message result( SHOT, lastRow, lastCol, "Bang", None, 1 );
 			return result;
@@ -216,6 +216,8 @@ void Cheddar::newRound() {
 	this->td = RIGHT;
 	this->row = 0;
 	this->col = 0;
+
+	shipMap.resetCurShipPlacement();
 }
 
 /**
@@ -237,13 +239,19 @@ Message Cheddar::placeShip(int length) {
     // Create ship names each time called: Ship0, Ship1, Ship2, ...
     snprintf(shipName, sizeof shipName, "Ship%d", numShipsPlaced);
 
+	heatMap.addShip(length);
 	int row, col, dir;
+
+	/* RANDOM SHIP PLACEMENT
 
 	dir = rand() % 2;
 
 	findShipLocation(row, col, length, dir);
 
 	updateCheddarBoard(row, col, length, dir);
+	*/
+
+	shipMap.bestShipLocation(length, row, col, dir);
 
 	if( dir == 0 ) {
 		Message response( PLACE_SHIP, row, col, shipName, Horizontal, length );
@@ -256,12 +264,12 @@ Message Cheddar::placeShip(int length) {
 
 		return response;
 	}
-
+	
     // parameters = mesg type (PLACE_SHIP), row, col, a string, direction (Horizontal/Vertical)
 }
 
 void Cheddar::findShipLocation(int &row, int &col, int length, int dir) {
-
+	
 	if( dir == 1 ) {
 		row = rand() % (boardSize - length + 1);
 		col = rand() % boardSize;
@@ -325,17 +333,18 @@ void Cheddar::update(Message msg) {
 	case KILL: shotmode = SEEK; // TODO: Dynamically check for other unresolved hits after kills -- write a function to go in this switch statement
 			   board[msg.getRow()][msg.getCol()] = msg.getMessageType();
 			   searchForDamagedShips(lastHitRow, lastHitCol, shotmode);
+			   killSize++;
 			   break; 
 	case MISS:
 	    board[msg.getRow()][msg.getCol()] = msg.getMessageType();
 	    break;
 	case WIN:
-	    break;
 	case LOSE:
-	    break;
 	case TIE:
+		shipMap.convertToShipMap(opponentShots);
 	    break;
 	case OPPONENT_SHOT:
+		opponentShots[msg.getRow()][msg.getCol()] = MISS;
 	    // TODO: get rid of the cout, but replace in your AI with code that does something
 	    // useful with the information about where the opponent is shooting.
 	    //cout << gotoRowCol(20, 30) << "DumbPl: opponent shot at "<< msg.getRow() << ", " << msg.getCol() << flush;

@@ -16,6 +16,7 @@ using namespace std;
 #include "defines.h"
 #include "conio.h"
 #include "HeatMap.h"
+#include "ShipMap.h"
 
 // Da Cheese inherits from/extends PlayerV2
 
@@ -37,13 +38,16 @@ class Cheddar: public PlayerV2 {
 	void updateCheddarBoard(int row, int col, int length, int dir);
 	void searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm);
 	int boardSize;
+	int killSize;
 	void initializeBoard();
 		HeatMap heatMap;
+		ShipMap shipMap;
         ShotMode shotmode;
 		TargetDirection td;
 		int lastRow, lastCol, row, col, lastHitRow, lastHitCol;
 		int numShipsPlaced;
         char board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		char opponentShots[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		char cheddarBoard[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 };
 
