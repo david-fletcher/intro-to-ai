@@ -31,7 +31,7 @@ void ShipMap::convertToShipMap(char board[10][10]){
 	for(int i = 0; i < boardSize; i++){
 		for(int j = 0; j < boardSize; j++){
 			if(board[i][j] != WATER){
-				tempShipMap[i][j] = 3;
+				tempShipMap[i][j] = 5; //Magic number
 			}
 			else{
 				tempShipMap[i][j] = -1;
