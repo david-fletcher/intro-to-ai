@@ -19,11 +19,14 @@ class HeatMap {
 		void deleteShip(int shipSize);
 		void printHeatMap();
 		void printShipVector();
+		void addPrevRoundData(char playerBoard[10][10]);
 	private:
+		void addMapsTogether();
 		void resetHeatMap();
-			int basicProbabilityMap[10][10];
-			int boardSize;
-			vector<int> shipLengths;
+		int basicProbabilityMap[10][10];
+		int longRunningMap[10][10];
+		int boardSize;
+		vector<int> shipLengths;
 };
 
 #endif

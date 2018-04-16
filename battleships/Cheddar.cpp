@@ -28,6 +28,7 @@ Cheddar::Cheddar( int boardSz ) :PlayerV2(boardSz) {
 	boardSize = boardSz;
 	heatMap.initializeHeatMap(boardSz);
 	shipMap.initializeShipMap(boardSz);
+	gameCount = 0;
 }
 
 /**
@@ -77,7 +78,7 @@ Message Cheddar::getMove() {
 		}
 	} else if(shotmode == HUNT) {
 		huntForKill(row, col, lastHitRow, lastHitCol, td);
-
+		
 		if(isValidMove(row, col)){
 			Message result( SHOT, row, col, "Bang", None, 1 );
 			return result;
@@ -215,6 +216,8 @@ void Cheddar::newRound() {
 	this->row = 0;
 	this->col = 0;
 
+	this->gameCount++;
+
 	shipMap.resetCurShipPlacement();
 }
 
@@ -240,7 +243,14 @@ Message Cheddar::placeShip(int length) {
 	heatMap.addShip(length);
 	int row, col, dir;
 
-	shipMap.bestShipLocation(length, row, col, dir);
+	if(gameCount > 1 || boardSize < 10) {
+		shipMap.bestShipLocation(length, row, col, dir);
+	} else {
+		dir = rand() % 2;
+		findShipLocation(row, col, length, dir);
+		updateCheddarBoard(row, col, length, dir);
+	}
+
 
 	if( dir == 0 ) {
 		Message response( PLACE_SHIP, row, col, shipName, Horizontal, length );
@@ -272,6 +282,35 @@ void Cheddar::updateCheddarBoard(int row, int col, int length, int dir) {
 			cheddarBoard[r][col] = SHIP;
 		}
 	}
+}
+/**
+ * @brief Randomly places ships on the board.
+ * @param row A reference to the int that we'll set as the starting row location.
+ * @param col A reference to the int that we'll set as the starting column location.
+ * @param length The length of the ship to be placed.
+ * @param dir An integer that holds the direction of the ship (0 = horizontal, 1 = vertical).
+ */
+void Cheddar::findShipLocation( int& row, int& col, int length, int dir ) { // 0 == Horizontal, 1 == Vertical
+	if( dir == 1 ) {
+		row = rand() % (boardSize - length + 1);
+		col = rand() % boardSize;
+		
+		for( int r = row; r < row + length; r++ ) {
+			if( cheddarBoard[r][col] == WATER ) { continue; } 
+			else { findShipLocation( row, col, length, dir ); break; }
+		}
+	}
+	else { // dir == 0
+		row = rand() % boardSize;
+		col = rand() % (boardSize - length + 1);
+		
+		for( int c = col; c < col + length; c++ ) {
+			if( cheddarBoard[row][c] == WATER ) { continue; } 
+			else { findShipLocation( row, col, length, dir ); break; }
+		}
+	}
+
+	return;	
 }
 
 /**
@@ -319,6 +358,7 @@ void Cheddar::update(Message msg) {
 	case LOSE:
 	case TIE:
 		shipMap.convertToShipMap(opponentShots);
+		heatMap.addPrevRoundData(board);
 	    break;
 	case OPPONENT_SHOT:
 		opponentShots[msg.getRow()][msg.getCol()] = MISS;

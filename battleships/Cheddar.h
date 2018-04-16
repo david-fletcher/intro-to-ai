@@ -34,6 +34,7 @@ class Cheddar: public PlayerV2 {
 	enum TargetDirection { UP, DOWN, LEFT, RIGHT };
 	void huntForKill(int& shotRow, int& shotCol, int lastHitR, int lastHitC, TargetDirection& direction);
 	bool isValidMove(int row, int col);
+	void findShipLocation(int &row, int &col, int length, int dir);
 	void updateCheddarBoard(int row, int col, int length, int dir);
 	void searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm);
 	void initializeBoard();
@@ -45,6 +46,7 @@ class Cheddar: public PlayerV2 {
 		int numShipsPlaced;
 		int boardSize;
 		int killSize;
+		int gameCount;
         char board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		char opponentShots[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 		char cheddarBoard[MAX_BOARD_SIZE][MAX_BOARD_SIZE];

@@ -18,6 +18,11 @@ using namespace std;
  */
 void HeatMap::initializeHeatMap(int sizeOfBoard) {
 	boardSize = sizeOfBoard;
+	for(int i = 0; i < boardSize; i++){
+		for(int j = 0; j < boardSize; j++){
+			longRunningMap[i][j] = 0;
+		}
+	}
 }
 
 /**
@@ -26,7 +31,8 @@ void HeatMap::initializeHeatMap(int sizeOfBoard) {
  */
 void HeatMap::generateProbability(char playerBoard[10][10]){
 	resetHeatMap();
-	
+	addMapsTogether();
+
 	int shipSize;	
 	//Vertical ships
 	for(unsigned int ship = 0; ship < shipLengths.size(); ship++) {
@@ -62,7 +68,7 @@ void HeatMap::generateProbability(char playerBoard[10][10]){
 				}
 				if(canFit){
 					for(int k = 0; k < shipSize; k++){
-						basicProbabilityMap[i][j+k] += 1;
+						basicProbabilityMap[i][j+k] += 2;
 					}
 				}
 			}
@@ -129,6 +135,33 @@ void HeatMap::getShot(int& rowToShoot, int& colToShoot) {
 				rowToShoot = i;
 				colToShoot = j;
 			}
+		}
+	}
+}
+
+/**
+ * @brief Takes the board of the previous match and adds values to a heatmap that holds values for every time the opponent has placed a ship in a certain location.
+ * @param playerBoard The board of the previous round
+ */
+void HeatMap::addPrevRoundData(char playerBoard[10][10]) {
+	for(int row = 0; row < boardSize; row++) {
+		for(int col = 0; col < boardSize; col++) {
+			if(playerBoard[row][col] == HIT || playerBoard[row][col] == KILL) {
+				longRunningMap[row][col] += 1;
+			} else if(playerBoard[row][col] == MISS) {
+				//longRunningMap[row][col] -= 1;
+			}
+		}
+	}
+}
+
+/**
+ * @brief Adds the heatmap of the opponent's ship placements to the heatmap of likely spots
+ */
+void HeatMap::addMapsTogether() {
+	for(int row = 0; row < boardSize; row++) {
+		for(int col = 0; col < boardSize; col++) {
+			basicProbabilityMap[row][col] += longRunningMap[row][col];
 		}
 	}
 }

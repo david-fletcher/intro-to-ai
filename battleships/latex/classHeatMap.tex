@@ -18,10 +18,28 @@ void \hyperlink{classHeatMap_acf289d30dc8dc913caed601720d30afc}{print\+Heat\+Map
 \begin{DoxyCompactList}\small\item\em Prints the heatmap (used for debugging purposes). \end{DoxyCompactList}\item 
 void {\bfseries print\+Ship\+Vector} ()\hypertarget{classHeatMap_a16acb67000e14767f58e8612de86569f}{}\label{classHeatMap_a16acb67000e14767f58e8612de86569f}
 
-\end{DoxyCompactItemize}
+\item 
+void \hyperlink{classHeatMap_a8cc2de7f995fefcbfec8f631181ddecb}{add\+Prev\+Round\+Data} (char player\+Board\mbox{[}10\mbox{]}\mbox{[}10\mbox{]})
+\begin{DoxyCompactList}\small\item\em Takes the board of the previous match and adds values to a heatmap that holds values for every time the opponent has placed a ship in a certain location. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
+\index{Heat\+Map@{Heat\+Map}!add\+Prev\+Round\+Data@{add\+Prev\+Round\+Data}}
+\index{add\+Prev\+Round\+Data@{add\+Prev\+Round\+Data}!Heat\+Map@{Heat\+Map}}
+\subsubsection[{\texorpdfstring{add\+Prev\+Round\+Data(char player\+Board[10][10])}{addPrevRoundData(char playerBoard[10][10])}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::add\+Prev\+Round\+Data (
+\begin{DoxyParamCaption}
+\item[{char}]{player\+Board\mbox{[}10\mbox{]}\mbox{[}10\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{classHeatMap_a8cc2de7f995fefcbfec8f631181ddecb}{}\label{classHeatMap_a8cc2de7f995fefcbfec8f631181ddecb}
+
+
+Takes the board of the previous match and adds values to a heatmap that holds values for every time the opponent has placed a ship in a certain location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Board} & The board of the previous round \\
+\hline
+\end{DoxyParams}
 \index{Heat\+Map@{Heat\+Map}!add\+Ship@{add\+Ship}}
 \index{add\+Ship@{add\+Ship}!Heat\+Map@{Heat\+Map}}
 \subsubsection[{\texorpdfstring{add\+Ship(int ship\+Size)}{addShip(int shipSize)}}]{\setlength{\rightskip}{0pt plus 5cm}void Heat\+Map\+::add\+Ship (
