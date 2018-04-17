@@ -48,7 +48,7 @@ void HeatMap::generateProbability(char playerBoard[10][10]){
 				}
 				if(canFit){
 					for(int k = 0; k < shipSize; k++){
-						basicProbabilityMap[i+k][j] += 1;
+						basicProbabilityMap[i+k][j] += 3;
 					}
 				}
 			}
@@ -68,7 +68,7 @@ void HeatMap::generateProbability(char playerBoard[10][10]){
 				}
 				if(canFit){
 					for(int k = 0; k < shipSize; k++){
-						basicProbabilityMap[i][j+k] += 2;
+						basicProbabilityMap[i][j+k] += 3;
 					}
 				}
 			}
@@ -127,7 +127,7 @@ void HeatMap::resetHeatMap() {
  * @param colToShoot The pointer of the optimal column index to shoot at (ByRef).
  */
 void HeatMap::getShot(int& rowToShoot, int& colToShoot) {
-	int maxIndex = 0;
+	int maxIndex = -99999;
 	for(int i = 0; i < boardSize; i++) {
 		for(int j = 0; j < boardSize; j++) {
 			if(maxIndex < basicProbabilityMap[i][j]) {
@@ -149,7 +149,7 @@ void HeatMap::addPrevRoundData(char playerBoard[10][10]) {
 			if(playerBoard[row][col] == HIT || playerBoard[row][col] == KILL) {
 				longRunningMap[row][col] += 1;
 			} else if(playerBoard[row][col] == MISS) {
-				//longRunningMap[row][col] -= 1;
+				longRunningMap[row][col] -= 1;
 			}
 		}
 	}

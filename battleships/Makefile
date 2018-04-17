@@ -15,11 +15,11 @@ CXX = g++
 # Add your player on the line after GamblerPlayer 
 ################################################
 CONTESTOBJECTS = AIContest.o BoardV3.o Message.o PlayerV2.o conio.o contest.o \
-	HeatMap.o \
+	HeatMap.o DumbPlayerV2.o \
 	Cheddar.o CleanPlayerV2.o GamblerPlayerV2.o LearningGambler.o SemiSmartPlayerV2.o \
 
 TESTEROBJECTS = AIContest.o BoardV3.o Message.o PlayerV2.o conio.o tester.o \
-	HeatMap.o ShipMap.o \
+	HeatMap.o ShipMap.o DumbPlayerV2.o \
 	Cheddar.o CleanPlayerV2.o GamblerPlayerV2.o LearningGambler.o SemiSmartPlayerV2.o \
 
 HOST_NAME := $(shell hostname)
@@ -87,6 +87,8 @@ AIContest.cpp: AIContest.h Message.h defines.h
 Cheddar.o: Cheddar.cpp Message.cpp
 Cheddar.cpp: Cheddar.h defines.h PlayerV2.h
 
+DumbPlayerV2.o: DumbPlayerV2.cpp Message.cpp
+DumbPlayerV2.cpp: DumbPlayerV2.h defines.h PlayerV2.h
 ################################################
 # Change 2:
 # Add your player dependency information below

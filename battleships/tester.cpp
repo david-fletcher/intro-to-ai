@@ -23,6 +23,7 @@
 
 // Include your player here
 //	Professor's contestants
+#include "DumbPlayerV2.h"
 #include "CleanPlayerV2.h"
 #include "SemiSmartPlayerV2.h"
 #include "GamblerPlayerV2.h"
@@ -44,7 +45,7 @@ float secondsPerMove = 1;
 int boardSize;	// BoardSize
 int totalGames = 0;
 int totalCountedMoves = 0;
-const int NumPlayers = 5;
+const int NumPlayers = 6;
 
 int wins[NumPlayers][NumPlayers];
 int playerIds[NumPlayers];
@@ -53,12 +54,13 @@ int winCount[NumPlayers];
 int statsShotsTaken[NumPlayers];
 int statsGamesCounted[NumPlayers];
 string playerNames[NumPlayers] = { 
-    "Clean Player",
+	"Clean Player",
     "Semi-Smart Player",
     "Gambler Player",
     "Learning Gambler",
     // Change to your player's name below
-    "Cheddar"
+    "Cheddar",
+    "Dumb Player"
 };
 
 int main() {
@@ -227,6 +229,7 @@ PlayerV2* getPlayer( int playerId, int boardSize ) {
 	case 3: return new LearningGambler( boardSize );
 	// Change for your player's AI below
 	case 4: return new Cheddar( boardSize );
+	case 5: return new DumbPlayerV2( boardSize );
     }
 }
 
