@@ -147,7 +147,7 @@ void HeatMap::addPrevRoundData(char playerBoard[10][10]) {
 	for(int row = 0; row < boardSize; row++) {
 		for(int col = 0; col < boardSize; col++) {
 			if(playerBoard[row][col] == HIT || playerBoard[row][col] == KILL) {
-				longRunningMap[row][col] += 1;
+				longRunningMap[row][col] += 3;
 			} else if(playerBoard[row][col] == MISS) {
 				longRunningMap[row][col] -= 1;
 			}
