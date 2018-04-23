@@ -82,8 +82,8 @@ AIContest.o: AIContest.cpp
 AIContest.cpp: AIContest.h Message.h defines.h
 
 # Players here
-Cheddar.o: Cheddar.cpp Message.cpp
-Cheddar.cpp: Cheddar.h defines.h PlayerV2.h
+#Cheddar.o: Cheddar.cpp Message.cpp
+#Cheddar.cpp: Cheddar.h defines.h PlayerV2.h
 
 CheddarContest.o: CheddarContest.cpp Message.cpp
 CheddarContest.cpp: CheddarContest.h defines.h PlayerV2.h

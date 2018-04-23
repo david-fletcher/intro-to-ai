@@ -7,8 +7,8 @@
  * Jordan Wood, David Fletcher, Ryan Houck
  */
 
-#ifndef CheddarContest_H		// Double inclusion protection
-#define CheddarContest_H
+#ifndef Cheddar_H		// Double inclusion protection
+#define Cheddar_H
 
 using namespace std;
 
@@ -18,7 +18,6 @@ using namespace std;
 #include "PlayerV2.h"
 #include "Message.h"
 #include "defines.h"
-#include "conio.h"
 
 // Da Cheese inherits from/extends PlayerV2
 
@@ -39,8 +38,8 @@ class HeatMap {
 		void resetHeatMap();
 		int basicProbabilityMap[10][10];
 		int longRunningMap[10][10];
-		int boardSize;
-		vector<int> shipLengths;
+			int boardSize;
+			vector<int> shipLengths;
 };
 
 class ShipMap {
@@ -61,34 +60,35 @@ class ShipMap {
 
 class Cheddar: public PlayerV2 {
     public:
-	Cheddar( int boardSize );
-	~Cheddar();
-	void newRound();
-	Message placeShip(int length);
-	Message getMove();
-	void update(Message msg);
+		Cheddar( int boardSize );
+		~Cheddar();
+		void newRound();
+		Message placeShip(int length);
+		Message getMove();
+		void update(Message msg);
 
     private:
-	enum ShotMode { SEEK, HUNT };
-	enum TargetDirection { UP, DOWN, LEFT, RIGHT };
-	void huntForKill(int& shotRow, int& shotCol, int lastHitR, int lastHitC, TargetDirection& direction);
-	bool isValidMove(int row, int col);
-	void findShipLocation(int &row, int &col, int length, int dir);
-	void updateCheddarBoard(int row, int col, int length, int dir);
-	void searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm);
-	void initializeBoard();
-		HeatMap heatMap;
-		ShipMap shipMap;
-        ShotMode shotmode;
-		TargetDirection td;
-		int lastRow, lastCol, row, col, lastHitRow, lastHitCol;
-		int numShipsPlaced;
-		int boardSize;
-		int killSize;
-		int gameCount;
-        char board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		char opponentShots[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		char cheddarBoard[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		enum ShotMode { SEEK, HUNT };
+		enum TargetDirection { UP, DOWN, LEFT, RIGHT };
+		void huntForKill(int& shotRow, int& shotCol, int lastHitR, int lastHitC, TargetDirection& direction);
+		bool isValidMove(int row, int col);
+		bool isValidPlacement(int length, int row, int col, int dir);
+		void findShipLocation(int &row, int &col, int length, int dir);
+		void updateCheddarBoard(int row, int col, int length, int dir);
+		void searchForDamagedShips(int& nextRow, int& nextCol, ShotMode& sm);
+		void initializeBoard();
+			HeatMap heatMap;
+			ShipMap shipMap;
+			ShotMode shotmode;
+			TargetDirection td;
+			int lastRow, lastCol, row, col, lastHitRow, lastHitCol;
+			int numShipsPlaced;
+			int boardSize;
+			int killSize;
+			int gameCount;
+			char board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+			char opponentShots[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+			char cheddarBoard[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 };
 
 #endif

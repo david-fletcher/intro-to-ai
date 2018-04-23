@@ -1,4 +1,4 @@
-/**
+/*
  * @brief Cheddar AI for battleships
  * @file Cheddar.cpp
  * @author Stefan Brandle, Jonathan Geisler, Jordan Wood, David Fletcher, Ryan Houck
@@ -243,12 +243,15 @@ Message Cheddar::placeShip(int length) {
 	int row, col, dir;
 
 	if(gameCount > 1 || boardSize < 10) {
-		shipMap.bestShipLocation(length, row, col, dir);
+		//shipMap.bestShipLocation(length, row, col, dir);
+		//while(!isValidPlacement(length, row, col, dir)){
+			shipMap.bestShipLocation(length, row, col, dir);
+		//}
 	} else {
 		dir = rand() % 2;
 		findShipLocation(row, col, length, dir);
-		updateCheddarBoard(row, col, length, dir);
 	}
+	updateCheddarBoard(row, col, length, dir);
 
 
 	if( dir == 0 ) {
@@ -311,6 +314,29 @@ void Cheddar::findShipLocation( int& row, int& col, int length, int dir ) { // 0
 
 	return;	
 }
+
+bool Cheddar::isValidPlacement(int length, int row, int col, int dir){
+	//Vertical
+	if(dir == 1){
+		for(int k = 0; k < length; k++){
+			if(cheddarBoard[row+k][col] != WATER){
+				return false;
+			}
+		}
+	}
+
+	//Horizontal
+	else{
+		for(int k = 0; k < length; k++){
+			if(cheddarBoard[row][col+k] != WATER){
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
 
 /**
  * @brief Checks the board for damaged ships, and sets the shot mode to hunt if there are any hits (not kills).
@@ -529,6 +555,11 @@ void HeatMap::addMapsTogether() {
  */
 void ShipMap::initializeShipMap(int boardSz){
 	boardSize = boardSz;
+	for(int i = 0; i < boardSize; i++){
+		for(int j = 0; j < boardSize; j++){
+			map[i][j] = map[0][0];
+		}
+	}
 }
 
 /**
@@ -574,10 +605,14 @@ void ShipMap::resetCurShipPlacement() {
  * @param direction The pointer to the orientation at which a ship should be placed (0 = horizontal, 1 = vertical) (ByRef).
  */
 void ShipMap::bestShipLocation(int shipSize, int& row, int& col, int& direction){
-	int minShipVert = 99999;
+	int minShipVert = 0;
+	int minShipHoriz = 0;
+	for(int i = 0; i < shipSize; i++){
+		minShipVert += curShipPlacement[i][0];
+		minShipHoriz += curShipPlacement[0][i];
+	}
 	int minVertR = 0;
 	int minVertC = 0;
-	int minShipHoriz = 99999;
 	int minHorizR = 0;
 	int minHorizC = 0;
 
@@ -634,12 +669,12 @@ void ShipMap::bestShipLocation(int shipSize, int& row, int& col, int& direction)
 void ShipMap::placeShipOnMap(int r, int c, int dir, int shipSz){
 	if(dir == 1){//Vertical
 		for(int i = 0; i < shipSz; i++){
-			curShipPlacement[r+i][c] += 99999;
+			curShipPlacement[r+i][c] += 9999;
 		}
 	}
 	else{
 		for(int i = 0; i < shipSz; i++){
-			curShipPlacement[r][c+i] += 99999;
+			curShipPlacement[r][c+i] += 9999;
 		}
 	}
 }
