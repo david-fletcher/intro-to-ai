@@ -14,7 +14,6 @@ using namespace std;
 #include "PlayerV2.h"
 #include "Message.h"
 #include "defines.h"
-#include "conio.h"
 #include "HeatMap.h"
 #include "ShipMap.h"
 

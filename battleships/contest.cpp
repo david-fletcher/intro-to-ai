@@ -25,7 +25,7 @@
 // Include your player here
 //	Professor's contestants
 #include "DumbPlayerV2.h"
-#include "Cheddar.h"
+#include "CheddarContest.h"
 #include "GamblerPlayerV2.h"
 
 
