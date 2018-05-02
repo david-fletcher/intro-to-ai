@@ -52,8 +52,8 @@ if img is None:
 height = img.shape[0]
 width = img.shape[1]
 
-for row in range(height-1):
-	for col in range(width-1):
+for row in range(height):
+	for col in range(width):
 		blue = img[row,col,0]
 		green = img[row,col,1]
 		red = img[row,col,2]

@@ -42,7 +42,9 @@ THRESHOLD = 15 # more edges at 10, but also more noise
 if(len(sys.argv) == 1):
 	print "Please specify an image file."
 	sys.exit()
-elif(len(sys.argv) > 2):
+elif(len(sys.argv) == 3):
+	THRESHOLD = int(sys.argv[2])
+elif(len(sys.argv) > 3):
 	print "Too many arguements passed."
 	sys.exit()
 
