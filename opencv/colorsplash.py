@@ -37,7 +37,7 @@ sys.stdout.flush() # As suggested by Rom Ruben (see: http://stackoverflow.com/qu
 
 
 # change this to change how many edges get detected
-THRESHOLD = 15 # more edges at 10, but also more noise
+THRESHOLD = 70 # more edges at 10, but also more noise
 
 if(len(sys.argv) == 1):
 	print "Please specify an image file."
@@ -64,19 +64,23 @@ width = img.shape[1]
 base_blue = int(img[color_row, color_col, 0])
 base_green = int(img[color_row, color_col, 1])
 base_red = int(img[color_row, color_col, 2])
+base_purp = (base_blue + base_red) / 2
+base_turq = (base_blue + base_green) / 2
+base_yell = (base_red + base_green) / 2
 
 for row in range(height):
 	for col in range(width):
 		blue = int(img[row,col,0])
 		green = int(img[row,col,1])
 		red = int(img[row,col,2])
-		
-		if abs(base_blue - blue) > THRESHOLD or abs(base_green - green) > THRESHOLD or abs(base_red - red) > THRESHOLD: 
-			avg = (int(blue) + int(green) + int(red))/3
-
-			img.itemset((row,col,0),avg)
-			img.itemset((row,col,1),avg)
-			img.itemset((row,col,2),avg)
+                purp = (blue + red) / 2
+                turq = (blue + green) / 2
+                yell = (red + green) / 2
+                avg = (blue + green + red)/3
+                if ((abs(base_blue - blue) > THRESHOLD and abs(base_purp - purp) > THRESHOLD and abs(base_turq - turq) > THRESHOLD) or (abs(base_green - green) > THRESHOLD and abs(base_turq - turq) > THRESHOLD and abs(base_yell - yell) > THRESHOLD) or (abs(base_red - red) > THRESHOLD and abs(base_yell - yell) > THRESHOLD and abs(base_purp - purp) > THRESHOLD)):
+		    img.itemset((row,col,0),avg)
+                    img.itemset((row,col,1),avg)
+		    img.itemset((row,col,2),avg)
 
 		progress(row, height)
 
