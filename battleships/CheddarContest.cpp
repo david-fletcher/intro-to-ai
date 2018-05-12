@@ -10,7 +10,7 @@
  * shot from left to right, then top to bottom).
  */
 
-#include "Cheddar.h"
+#include "CheddarContest.h"
 
 /**
  * @brief Constructor that initializes any inter-round data structures.
@@ -209,7 +209,9 @@ void Cheddar::newRound() {
     this->initializeBoard();
 	
 	this->shotmode = SEEK; // begin by looking for ships
-	this->td = (rand()%2 == 0)? RIGHT : DOWN;
+
+	this->td = TargetDirection(rand() % 4);
+
 	//this->td = RIGHT; // OLD td init
 	this->row = 0;
 	this->col = 0;
