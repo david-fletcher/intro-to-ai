@@ -15,6 +15,8 @@ using namespace std;
 #include <vector>
 #include <iomanip>
 #include <iostream>
+#include <cstdio>
+#include <stdlib.h>
 #include "PlayerV2.h"
 #include "Message.h"
 #include "defines.h"

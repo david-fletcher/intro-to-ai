@@ -10,9 +10,7 @@
  * shot from left to right, then top to bottom).
  */
 
-#include <cstdio>
-
-#include "CheddarContest.h"
+#include "Cheddar.h"
 
 /**
  * @brief Constructor that initializes any inter-round data structures.
@@ -211,7 +209,8 @@ void Cheddar::newRound() {
     this->initializeBoard();
 	
 	this->shotmode = SEEK; // begin by looking for ships
-	this->td = RIGHT;
+	this->td = (rand()%2 == 0)? RIGHT : DOWN;
+	//this->td = RIGHT; // OLD td init
 	this->row = 0;
 	this->col = 0;
 
@@ -243,10 +242,7 @@ Message Cheddar::placeShip(int length) {
 	int row, col, dir;
 
 	if(gameCount > 1 || boardSize < 10) {
-		//shipMap.bestShipLocation(length, row, col, dir);
-		//while(!isValidPlacement(length, row, col, dir)){
 			shipMap.bestShipLocation(length, row, col, dir);
-		//}
 	} else {
 		dir = rand() % 2;
 		findShipLocation(row, col, length, dir);
